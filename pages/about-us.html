@@ -164,15 +164,16 @@
         }
 
         .title-group2 {
-            margin-top: 20px; 
-            text-align: center; 
+            margin-top: -40px; 
+            text-align: left; 
+            transform: translateX(3%);
         }
 
         .title-group2 .title-1 {
-            font-size: 2.5rem; 
+            font-size: 20px; 
             font-family: 'Nunito', sans-serif; 
             font-weight: 800; 
-            color: #091E3E;
+            color: #06A3DA;
         }
 
         .title-group2 .title-2 {
@@ -180,51 +181,63 @@
             font-family: 'Nunito', sans-serif; 
             font-weight: 800; 
             color: #091E3E;
-            margin-top: -15px;
+            /* margin-top: -15px; */
         }
 
         .line-container {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px; 
+            align-items: start;
+            margin-bottom: 50px; 
+            margin-top: -7px;
         }
 
         .line {
             position: relative;
-            width: 150px; 
+            width: 196px; 
             height: 5px; 
             border-radius: 10px;
             background-color: #06A3DA; 
             overflow: hidden;
         }
 
-        .dot {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 6px; 
-            height: 6px;
-            background-color: white; 
-            border-radius: 30%; 
-            transform: translate(-50%, -50%);
-            animation: move-dot 3s linear infinite alternate; 
-        }
-
-        @keyframes move-dot {
-            0% {
-                left: 0; 
-            }
-            100% {
-                left: 100%; 
-            }
-        }
-
-        .services p {
+        .title-group2 p {
             font-family: 'Rubik', sans-serif; 
             color: #6B6A75;
             max-width: 800px;
             margin: 0 auto 0px;
+        }
+
+        .logo-picture {
+            max-width: 100%;
+            object-fit: contain;
+            transform: translateX(-20%) translateY(30%);
+        }
+
+        .button {
+            display: flex;
+            justify-content: flex-start;
+            transform: translateX(3%);
+            align-items: center;
+        }
+
+        .contact-btn {
+            width: 215px;
+            height: 58px;
+            background: #06A3DA;
+            color: white;
+            margin-top: 30px;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 600;
+        }
+
+        .contact-btn:hover {
+            background: #0793c6;
         }
 
         /* Footer */
@@ -282,19 +295,29 @@
     </section>
 
     <section class="services">
-        <div class="title-group2">
-            <h1 class="title-1">TENTANG KAMI</h1>
-            <h1 class="title-2">Lautin Aja</h1>
-        </div>
-        <p>Kami akan support anda dengan sepenuh hati, dengan memiliki tim yang handal</p> 
-        <p>akan menangani setiap barang kiriman yang ada, supaya pengiriman tepat </p>
-        <p>waktu, aman, terjamin serta bisa terealisasi dengan baik pastinya.</p>
-        <div class="line-container">
-            <div class="line">
-                <div class="dot"></div>
+        <div class="title-group2" style="display: flex; align-items: flex-start; justify-content: space-between;">
+            <div>
+                <h1 class="title-1">TENTANG KAMI</h1>
+                <h1 class="title-2">Lautin Aja</h1>
+                <div class="line-container">
+                    <div class="line"></div>
+                </div>
+                <p>Perusahaan yang bergerak dibidang logistik jasa pengiriman dan pindahan kantor. Dibawah</p> 
+                <p>bendera <strong>PT. Kecil Kecilan</strong>, Kami berusaha memberikan harga yang kompetitif, </p>
+                <p>responsif, komunikatif, dan selalu meningkatkan pelayanan kepada customer.</p>
+                <p style="margin-top: 40px;"><strong>Lautin Aja</strong> memiliki banyak sekali cakupan wilayah tertentu di Indonesia. Layanan yang kami.</p>
+                <p>berikan yaitu jasa pengiriman, Jasa pengiriman barang, cargo laut, pengiriman mobil dan motor,</p>
+                <p>pengiriman alat berat, serta proyek pengiriman atau borongan.</p>
+                <p style="margin-top: 40px;">Kami siap menjadi mitra pengiriman dengan komunikasi yang baik, harga yang bersaing dan</p>
+                <p>komitmen yang selalu kami jaga.</p>
+            </div>
+            <div class="image-section">
+                <img src="/img/logo.png" alt="Logo Picture" class="logo-picture" style="width: 300px; height: auto;">
             </div>
         </div>
-
+        <div class="button">
+            <button class="contact-btn">CONTACT</button>
+        </div>
     </section>
 
     <footer>
