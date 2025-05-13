@@ -198,6 +198,14 @@ nav a {
     border-radius: 0 16px 16px 0; 
 }
 
+.form-box.white-form2 {
+    background: #EEF9FF;
+    width: 400px;
+    color: #333;
+    margin-left: 0;
+    border-radius: 16px 16px 16px 16px; 
+}
+
 .form-title {
     font-size: 28px;
     font-family: 'Nunito', sans-serif;
