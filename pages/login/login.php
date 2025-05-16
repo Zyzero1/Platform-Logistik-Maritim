@@ -19,7 +19,7 @@ if ($stmt->num_rows == 1) {
         $_SESSION['user_id'] = $id;
         $_SESSION['user_name'] = $name;
 
-        header("Location: ../service.html"); 
+        header("Location: ../dashboard.html");
         exit;
     } else {
         echo "Password salah.";
@@ -30,4 +30,3 @@ if ($stmt->num_rows == 1) {
 
 $stmt->close();
 $conn->close();
-?>
