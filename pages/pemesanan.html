@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Lautin Aja Pemesanan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            width: 100%;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: sticky;
+            width: 100%;
+            top: 0;
+            display: flex;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 20px;
+            background: white;
+            color: rgb(15, 15, 15);
+            z-index: 1000;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            object-fit: cover;
+            transform: translateX(15%);
+        }
+
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            flex-grow: 1;
+            margin-right: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 30px;
+        }
+
+        nav a {
+            color: #091E3E;
+            text-decoration: none;
+            font-family: 'Nunito', sans-serif;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .profile-btn {
+            background: none;
+            color: rgb(8, 8, 71);
+            border: none;
+            border-radius: 20px;
+            padding: 5px 15px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            margin-left: 20px;
+        }
+
+        .profile-icon {
+            width: 39px;
+            height: 39px;
+            border-radius: 50%; 
+            margin-right: 20px; 
+        }
+
+        .profile-name {
+            font-family: 'Nunito', sans-serif;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 550px;
+            background: url('https://via.placeholder.com/1440x500') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 580px;
+            background: #006DB6;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: left;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 40px 20px;
+        }
+
+        .text-section h1 {
+            font-size: 80px;
+            margin-bottom: 20px;
+            margin-top: -60px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .text-section p {
+            font-size: 24px;
+            margin: 0 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .service-picture {
+            width: 1012px;
+            height: auto;
+            max-width: 100%;
+            object-fit: contain;
+            margin-top: 40px;
+        }
+
+        /* Services Section */
+        .services {
+            max-width: 1200px;
+            margin: 60px auto;
+            text-align: center;
+        }
+
+        .title-group2 {
+            text-align: center; 
+        }
+
+        .title-group2 .title-1 {
+            font-size: 2.5rem; 
+            font-family: 'Nunito', sans-serif; 
+            font-weight: 800; 
+            margin-top: -15px;
+            color: #091E3E;
+        }
+
+        .title-group2 .title-2 {
+            font-size: 2.5rem; 
+            font-family: 'Nunito', sans-serif; 
+            font-weight: 800; 
+            color: #091E3E;
+            margin-top: -15px;
+        }
+
+        .line-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px; 
+        }
+
+        .line {
+            position: relative;
+            width: 150px; 
+            height: 5px; 
+            border-radius: 10px;
+            background-color: #06A3DA; 
+            overflow: hidden;
+        }
+
+        .dot {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 6px; 
+            height: 6px;
+            background-color: white; 
+            border-radius: 30%; 
+            transform: translate(-50%, -50%);
+            animation: move-dot 3s linear infinite alternate; 
+        }
+
+        @keyframes move-dot {
+            0% {
+                left: 0; 
+            }
+            100% {
+                left: 100%; 
+            }
+        }
+
+        .services p {
+            font-family: 'Rubik', sans-serif; 
+            color: #6B6A75;
+            max-width: 800px;
+            margin: 0 auto 0px;
+        }
+
+        .service-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-top: 40px;
+        }
+
+        .service-card {
+            background: #e6f7ff;
+            width: 350px;
+            height: 300px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            margin: 20px auto 20px;
+            background: #06A3DA;
+            border-radius: 2px;
+            transform: rotate(45deg); 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .vehicle-icon {
+            width: 36px; 
+            height: 36px;
+            transform: rotate(-45deg);
+            filter: brightness(0) invert(1);
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Floating Action Button */
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #06A3DA;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            line-height: 60px;
+            border-radius: 50%;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+            z-index: 999;
+        }
+
+        .floating-button:hover {
+            background-color: #0077b6; 
+        }
+
+        .container {
+            background-color: #00b4d8; /* Blue color */
+            border-radius: 10px;
+            padding: 20px;
+            width: 600px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        .btn-kirim {
+            background-color: #fff;
+            color: #00b4d8;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-kirim:hover {
+            background-color: #0096c7;
+            color: #fff;
+        }
+
+
+        /* Footer */
+        footer {
+            background: #001f3f;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 160px;
+        }
+
+        footer p {
+            margin: 0;
+            font-family: 'Rubik', sans-serif;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .forms-container {
+                flex-direction: column;
+            }
+            .form-box {
+                margin: 10px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="../img/logo.png" alt="Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="dashboard.html">Home</a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="about-us.html">About Us</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <button class="profile-btn">
+            <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
+            <span class="profile-name">Profil</span>
+        </button>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+            <div class="text-section" style="flex: 1; min-width: 300px; text-align: left; transform: translateX(20%);">
+                <h1>Yuk, Kirim Barangmu Bareng LautinAja!</h1>
+                <p>Mudah, cepat, dan aman sampai tujuan. Pesan sekarang</p>
+                <p>dan nikmati layanan pengiriman maritim terpercaya</p>
+                <p>kami!</p>
+            </div>
+            <div class="image-section" style="flex: 1; min-width: 300px; display: flex; justify-content: flex-end;">
+                <img src="../img/service.png" alt="Service Picture" class="service-picture">
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="title-group2">
+            <h1 class="title-1">Layanan Cargo dan Ekspedisi Murah</h1>
+            <h1 class="title-2">Indonesia</h1>
+        </div>
+        <p>Kami akan support anda dengan sepenuh hati, dengan memiliki tim yang handal</p> 
+        <p>akan menangani setiap barang kiriman yang ada, supaya pengiriman tepat </p>
+        <p>waktu, aman, terjamin serta bisa terealisasi dengan baik pastinya.</p>
+        <div class="line-container">
+            <div class="line">
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <form action="#" method="POST">
+                <label for="nama">Nama Anda</label>
+                <input type="text" id="nama" name="nama" placeholder="Masukkan Nama Anda">
+
+                <label for="email">Email / No Telepon</label>
+                <input type="text" id="email" name="email" placeholder="Masukkan Email atau No Telepon">
+
+                <label for="alamat">Alamat</label>
+                <input type="text" id="alamat" name="alamat" placeholder="Masukkan Alamat Lengkap">
+
+                <div class="row">
+                    <div class="col">
+                        <label for="kabupaten">Kabupaten / Kota</label>
+                        <select id="kabupaten" name="kabupaten">
+                            <option value="">Pilih Kabupaten/Kota</option>
+                            <option value="Jakarta Utara">Jakarta Utara</option>
+                            <option value="Jakarta Selatan">Jakarta Selatan</option>
+                            <option value="Jakarta Barat">Jakarta Barat</option>
+                            <option value="Jakarta Timur">Jakarta Timur</option>
+                            <option value="Jakarta Pusat">Jakarta Pusat</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="provinsi">Provinsi</label>
+                        <select id="provinsi" name="provinsi">
+                            <option value="">Pilih Provinsi</option>
+                            <option value="DKI Jakarta">DKI Jakarta</option>
+                            <option value="Jawa Barat">Jawa Barat</option>
+                            <option value="Jawa Tengah">Jawa Tengah</option>
+                            <option value="Jawa Timur">Jawa Timur</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="kodepos">Kode Pos</label>
+                        <input type="text" id="kodepos" name="kodepos" placeholder="Masukkan Kode Pos">
+                    </div>
+                    <div class="col">
+                        <label for="metodepembayaran">Metode Pembayaran</label>
+                        <select id="metodepembayaran" name="metodepembayaran">
+                            <option value="">Pilih Metode Pembayaran</option>
+                            <option value="transfer_bank">Transfer Bank</option>
+                            <option value="gopay">Gopay</option>
+                            <option value="ovo">OVO</option>
+                            <option value="shopeepay">ShopeePay</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label for="jenisbarang">Jenis Barang</label>
+                        <select id="jenisbarang" name="jenisbarang">
+                            <option value="">Pilih Jenis Barang</option>
+                            <option value="makanan">Makanan</option>
+                            <option value="minuman">Minuman</option>
+                            <option value="elektronik">Elektronik</option>
+                            <option value="pakaian">Pakaian</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="jeniskargo">Jenis Kargo</label>
+                        <select id="jeniskargo" name="jeniskargo">
+                            <option value="">Pilih Jenis Kargo</option>
+                            <option value="reguler">Reguler</option>
+                            <option value="express">Express</option>
+                            <option value="same_day">Same Day</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-kirim">Kirim</button>
+            </form>
+        </div>
+
+
+        
+    </section>
+
+    <a href="#pemesanan" class="floating-button" title="Menu Pemesanan">+</a>
+
+    <footer>
+        <p>2025 © Lautin Aja. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
