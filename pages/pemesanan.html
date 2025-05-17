@@ -126,39 +126,50 @@
             flex-wrap: wrap;
             padding: 40px 20px;
         }
+        
+        .booking-picture {
+            width: 696px;
+            height: auto;
+            max-width: 100%;
+            object-fit: contain;
+            margin-top: -60px;
+            transform: translateX(-25px);
+        }
+        
+        .text-section {
+            min-width: 500px;
+            text-align: left;
+        }
 
         .text-section h1 {
-            font-size: 80px;
+            width: 800px;
+            font-size: 68px;
             margin-bottom: 20px;
-            margin-top: -60px;
+            margin-top: -120px;
             font-family: 'Poppins', sans-serif;
             font-weight: 800;
-            line-height: 1;
+            line-height: 1.2;
+            transform: translateX(-28.2%);
         }
 
         .text-section p {
             font-size: 24px;
+            line-height: 1.25;
             margin: 0 0;
             font-family: 'Nunito', sans-serif;
-        }
-
-        .service-picture {
-            width: 1012px;
-            height: auto;
-            max-width: 100%;
-            object-fit: contain;
-            margin-top: 40px;
+            transform: translateX(-32.2%);
         }
 
         /* Services Section */
         .services {
             max-width: 1200px;
-            margin: 60px auto;
+            margin: 0 auto;
             text-align: center;
         }
 
         .title-group2 {
             text-align: center; 
+            margin-top: -60px;
         }
 
         .title-group2 .title-1 {
@@ -169,51 +180,6 @@
             color: #091E3E;
         }
 
-        .title-group2 .title-2 {
-            font-size: 2.5rem; 
-            font-family: 'Nunito', sans-serif; 
-            font-weight: 800; 
-            color: #091E3E;
-            margin-top: -15px;
-        }
-
-        .line-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px; 
-        }
-
-        .line {
-            position: relative;
-            width: 150px; 
-            height: 5px; 
-            border-radius: 10px;
-            background-color: #06A3DA; 
-            overflow: hidden;
-        }
-
-        .dot {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 6px; 
-            height: 6px;
-            background-color: white; 
-            border-radius: 30%; 
-            transform: translate(-50%, -50%);
-            animation: move-dot 3s linear infinite alternate; 
-        }
-
-        @keyframes move-dot {
-            0% {
-                left: 0; 
-            }
-            100% {
-                left: 100%; 
-            }
-        }
-
         .services p {
             font-family: 'Rubik', sans-serif; 
             color: #6B6A75;
@@ -221,119 +187,83 @@
             margin: 0 auto 0px;
         }
 
-        .service-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 60px;
-            margin-top: 40px;
-        }
-
-        .service-card {
-            background: #e6f7ff;
-            width: 350px;
-            height: 300px;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            margin: 20px auto 20px;
-            background: #06A3DA;
-            border-radius: 2px;
-            transform: rotate(45deg); 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .vehicle-icon {
-            width: 36px; 
-            height: 36px;
-            transform: rotate(-45deg);
-            filter: brightness(0) invert(1);
-        }
-
-        .service-title {
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-
-        .service-desc {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* Floating Action Button */
-        .floating-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: #06A3DA;
-            color: white;
-            font-size: 40px;
-            font-weight: bold;
-            text-align: center;
-            line-height: 60px;
-            border-radius: 50%;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            transition: background-color 0.3s ease;
-            z-index: 999;
-        }
-
-        .floating-button:hover {
-            background-color: #0077b6; 
-        }
-
         .container {
-            background-color: #00b4d8; /* Blue color */
-            border-radius: 10px;
-            padding: 20px;
-            width: 600px;
+            background-color: #10AEE5; 
+            border-radius: 15px;
+            padding: 30px;
+            width: 948px;
+            margin: 40px auto;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         form {
             display: flex;
             flex-direction: column;
+            gap: 15px; 
+            max-width: 900px;
+            margin: 0 auto;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            gap: 20px; 
+        }
+
+        .form-group label {
+            min-width: 180px; 
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .form-group input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
         }
 
         label {
             color: #fff;
-            font-size: 16px;
+            font-size: 20px;
             margin-bottom: 5px;
         }
 
         input, select {
             width: 100%;
+            height: 49px;
             padding: 10px;
             margin-bottom: 15px;
             border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: 'Nunito', sans-serif;
         }
 
         .row {
             display: flex;
             gap: 20px;
+            width: 685px;
+            margin-left: auto; 
         }
 
         .col {
-            flex: 1;
+            flex: 1;         
         }
 
         .btn-kirim {
             background-color: #fff;
             color: #00b4d8;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            width: 120px;
+            margin-left: auto;
+            padding: 13px 20px;
+            border-radius: 10px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
+            font-family: 'Nunito', sans-serif;
             transition: background-color 0.3s ease;
         }
 
@@ -388,42 +318,41 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-content" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+            <div class="image-section" style="flex: 1; min-width: 300px; display: flex; justify-content: flex-end;">
+                <img src="../img/booking.png" alt="Booking Picture" class="booking-picture">
+            </div>
             <div class="text-section" style="flex: 1; min-width: 300px; text-align: left; transform: translateX(20%);">
-                <h1>Yuk, Kirim Barangmu Bareng LautinAja!</h1>
+                <h1>Yuk, Kirim Barangmu <span>Bareng LautinAja!</span></h1>
                 <p>Mudah, cepat, dan aman sampai tujuan. Pesan sekarang</p>
                 <p>dan nikmati layanan pengiriman maritim terpercaya</p>
                 <p>kami!</p>
-            </div>
-            <div class="image-section" style="flex: 1; min-width: 300px; display: flex; justify-content: flex-end;">
-                <img src="../img/service.png" alt="Service Picture" class="service-picture">
             </div>
         </div>
     </section>
 
     <section class="services">
         <div class="title-group2">
-            <h1 class="title-1">Layanan Cargo dan Ekspedisi Murah</h1>
-            <h1 class="title-2">Indonesia</h1>
+            <h1 class="title-1">Pemesanan</h1>
         </div>
-        <p>Kami akan support anda dengan sepenuh hati, dengan memiliki tim yang handal</p> 
-        <p>akan menangani setiap barang kiriman yang ada, supaya pengiriman tepat </p>
-        <p>waktu, aman, terjamin serta bisa terealisasi dengan baik pastinya.</p>
-        <div class="line-container">
-            <div class="line">
-                <div class="dot"></div>
-            </div>
-        </div>
+        <p>Kami siap mengantarkan barang Anda dengan jaminan keamanan dan</p> 
+        <p>ketepatan waktu. Isi detail pengiriman dan pesan sekarang!</p>
 
         <div class="container">
             <form action="#" method="POST">
-                <label for="nama">Nama Anda</label>
-                <input type="text" id="nama" name="nama" placeholder="Masukkan Nama Anda">
+                <div class="form-group">
+                    <label for="nama">Nama Anda</label>
+                    <input type="text" id="nama" name="nama" placeholder="Masukkan Nama Anda">
+                </div>
 
-                <label for="email">Email / No Telepon</label>
-                <input type="text" id="email" name="email" placeholder="Masukkan Email atau No Telepon">
-
-                <label for="alamat">Alamat</label>
-                <input type="text" id="alamat" name="alamat" placeholder="Masukkan Alamat Lengkap">
+                <div class="form-group">
+                    <label for="email">Email / No Telepon</label>
+                    <input type="text" id="email" name="email" placeholder="Masukkan Email atau No Telepon"> 
+                </div>
+                
+                <div class="form-group">
+                    <label for="alamat">Alamat</label>
+                    <input type="text" id="alamat" name="alamat" placeholder="Masukkan Alamat Lengkap">
+                </div>
 
                 <div class="row">
                     <div class="col">
@@ -491,12 +420,8 @@
                 <button type="submit" class="btn-kirim">Kirim</button>
             </form>
         </div>
-
-
-        
+   
     </section>
-
-    <a href="#pemesanan" class="floating-button" title="Menu Pemesanan">+</a>
 
     <footer>
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
