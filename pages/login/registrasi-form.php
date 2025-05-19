@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <title>Forgot password</title>
+    <title>Sign Up</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             min-height: 100vh;
             display: flex;
@@ -28,11 +29,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('../../img/bg-login.jpg'); 
+            background-image: url('../../img/bg-login.jpg');
             background-size: cover;
             background-position: center;
-            filter: blur(30px); 
-            z-index: -2; 
+            filter: blur(30px);
+            z-index: -2;
         }
 
         .overlay {
@@ -41,7 +42,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(43, 211, 237, 0.077); 
+            background-color: rgba(43, 211, 237, 0.077);
             z-index: -1;
         }
 
@@ -50,7 +51,7 @@
             padding: 55px;
             background: white;
             border-radius: 28px;
-            box-shadow: 0 0 15px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 0 15px 3px rgba(0, 0, 0, 0.1);
             z-index: 1;
         }
 
@@ -59,9 +60,9 @@
             font-family: 'Nunito', sans-serif;
             align-items: center;
             font-size: 18px;
-            font-weight:800;
+            font-weight: 800;
             gap: 4px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             transform: translateX(-1%);
         }
 
@@ -72,30 +73,14 @@
             border-radius: 50%;
         }
 
-        .reset-pw-text {
-            margin-bottom: 20px;
-        }
-
-        .reset-pw-text h2{
-            font-family: 'Inter', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            color: #000;
-            margin-bottom: 12px;
-        }
-
-        .reset-pw-text p {
-            font-family: 'Inter', sans-serif;
-            font-size: 12px;
-            color: #555;
-        }
-
         .input-group {
             position: relative;
             margin-bottom: 20px;
         }
 
-        input[type="email"] {
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
             width: 100%;
             font-family: 'Inter', sans-serif;
             padding: 12px 15px;
@@ -109,7 +94,16 @@
             border-color: #10AEE5;
         }
 
-        .reset-pw-btn {
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #999;
+        }
+
+        .sign-in-btn {
             width: 100%;
             padding: 12px;
             background: #10AEE5;
@@ -123,35 +117,59 @@
             transition: background 0.3s;
         }
 
-        .reset-pw-btn:hover {
+        .sign-in-btn:hover {
             background: #0e92be;
         }
 
+        .login-here {
+            margin-top: 20px;
+            padding: 12px 15px;
+            font-family: 'Inter', sans-serif;
+            border: 1px solid #ccc;
+            font-size: 13px;
+            border-radius: 8px;
+            text-align: center;
+            color: #000000;
+        }
+
+        .login-here a {
+            color: #10AEE5;
+            text-decoration: none;
+            font-size: 13px;
+        }
     </style>
 </head>
+
 <body>
     <div class="background-blur"></div>
     <div class="overlay"></div>
-    
+
     <div class="login-container">
         <div class="logo">
             <img src="../../img/logo.png" alt="LautinAja Logo">
             <span>LautinAja</span>
         </div>
 
-        <div class="reset-pw-text">
-            <h2>Forgot password</h2>
-            <p>Please enter your email to reset the password</p>
+        <form action="regiss.php" method="post">
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Full name" required>
+            </div>
+
+            <div class="input-group">
+                <input type="email" name="email" placeholder="Email address" required>
+            </div>
+
+            <div class="input-group">
+                <input type="password" name="password" placeholder="Set a password" id="password" required>
+                <span class="toggle-password" onclick="togglePasswordVisibility()">&#128065;</span>
+            </div>
+
+            <button type="submit" class="sign-in-btn">Sign up</button>
+        </form>
+
+        <div class="login-here">
+            Already have an account? <a href="login-form.php">Login here</a>
         </div>
-
-       <form action="resetpw.php" method="post">
-    <div class="input-group">
-        <input type="email" name="email" placeholder="Enter your email" required>
-    </div>
-
-    <button type="submit" class="reset-pw-btn">Reset password</button>
-</form>
-
     </div>
 
     <script>
@@ -165,4 +183,5 @@
         }
     </script>
 </body>
+
 </html>

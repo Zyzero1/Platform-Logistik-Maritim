@@ -13,10 +13,10 @@
         <img src="../img/logo.png" alt="Logo" class="logo">
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="service.html">Service</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="landing-page.php">Home</a></li>
+                <li><a href="service.php">Service</a></li>
+                <li><a href="about-us.php">About Us</a></li>
+                <li><a href="../pages/login/Login-form.php">Contact</a></li>
             </ul>
         </nav>
         <button class="profile-btn">
@@ -33,7 +33,7 @@
                 <h1 class="main-title">Lautin Aja Jasa Cargo</h1>
                 <h1 class="sub-title">Indonesia</h1>
             </div>
-            <a href="../pages/login/Login-form.html"><button class="login-btn">Login</button></a>
+            <a href="../pages/login/Login-form.php"><button class="login-btn">Login</button></a>
         </div>
     </section>
 

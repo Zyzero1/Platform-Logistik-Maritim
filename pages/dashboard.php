@@ -16,10 +16,10 @@
         <img src="../img/logo.png" alt="Logo" class="logo">
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="service.html">Service</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="dashboard.php">Home</a></li>
+                <li><a href="service.php">Service</a></li>
+                <li><a href="about-us.php">About Us</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>
         <button class="profile-btn">

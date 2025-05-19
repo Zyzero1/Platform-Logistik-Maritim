@@ -1,43 +1,28 @@
 <?php
-require 'db.php';
+$conn = new mysqli("localhost", "root", "", "lautinaja");
 
-$token = $_POST['token'];
-$password = $_POST['password'];
-$confirm = $_POST['confirm_password'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $token = $_POST['token'];
+    $password = $_POST['password'];
+    $confirm = $_POST['confirm_password'];
 
-if ($password !== $confirm) {
-    die("Password tidak cocok.");
-}
-
-// Ambil data berdasarkan token
-$stmt = $conn->prepare("SELECT email, expires_at FROM password_resets WHERE token = ?");
-$stmt->bind_param("s", $token);
-$stmt->execute();
-$stmt->store_result();
-
-if ($stmt->num_rows == 1) {
-    $stmt->bind_result($email, $expires_at);
-    $stmt->fetch();
-
-    if (strtotime($expires_at) < time()) {
-        die("Token kadaluarsa.");
+    if ($password !== $confirm) {
+        echo "<script>alert('Konfirmasi password tidak cocok!');history.back();</script>";
+        exit;
     }
 
-    // Update password
-    $hashed = password_hash($password, PASSWORD_DEFAULT);
-    $update = $conn->prepare("UPDATE users SET password = ? WHERE email = ?");
-    $update->bind_param("ss", $hashed, $email);
-    $update->execute();
-
-    // Hapus token
-    $conn->query("DELETE FROM password_resets WHERE email = '$email'");
-
-    echo "Password berhasil diperbarui. <a href='Login-form.html'>Login di sini</a>";
-
-} else {
-    echo "Token tidak valid.";
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    
+    // Cek token dan update
+    $result = $conn->query("SELECT * FROM users WHERE reset_token = '$token'");
+    if ($result->num_rows > 0) {
+        $conn->query("UPDATE users SET password='$passwordHash', reset_token=NULL WHERE reset_token = '$token'");
+        echo "<script>
+            alert('Password berhasil diperbarui!');
+            window.location.href = 'login-form.php';
+        </script>";
+    } else {
+        echo "<script>alert('Token tidak valid atau sudah digunakan!');</script>";
+    }
 }
-
-$stmt->close();
-$conn->close();
 ?>
