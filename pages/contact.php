@@ -1,5 +1,15 @@
+<?php
+session_start();
+$conn = new mysqli("localhost", "root", "", "lautinaja");
+$user_id = $_SESSION['user_id'];
+
+$query = $conn->query("SELECT name FROM users WHERE id = $user_id");
+$user = $query->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +19,11 @@
     <script src="https://kit.fontawesome.com/f4f5772ee5.js" crossorigin="anonymous"></script>
     <title>Lautin Aja Pemesanan</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             width: 100%;
@@ -83,8 +97,8 @@
         .profile-icon {
             width: 39px;
             height: 39px;
-            border-radius: 50%; 
-            margin-right: 20px; 
+            border-radius: 50%;
+            margin-right: 20px;
         }
 
         .profile-name {
@@ -127,7 +141,7 @@
             flex-wrap: wrap;
             padding: 40px 20px;
         }
-        
+
         .contact-picture {
             width: 696px;
             height: auto;
@@ -136,7 +150,7 @@
             margin-top: -60px;
             transform: translateX(-25px);
         }
-        
+
         .text-section {
             min-width: 500px;
             text-align: left;
@@ -169,20 +183,20 @@
         }
 
         .title-group2 {
-            text-align: center; 
+            text-align: center;
             margin-top: 30px;
         }
 
         .title-group2 .title-1 {
-            font-size: 2.5rem; 
-            font-family: 'Nunito', sans-serif; 
-            font-weight: 800; 
+            font-size: 2.5rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
             margin-top: -15px;
             color: #091E3E;
         }
 
         .services p {
-            font-family: 'Rubik', sans-serif; 
+            font-family: 'Rubik', sans-serif;
             color: #6B6A75;
             max-width: 800px;
             margin: 0 auto 0px;
@@ -218,17 +232,19 @@
             min-width: 0;
         }
 
-        input, textarea {
+        input,
+        textarea {
             padding: 12px;
             border: 1px solid #A3E7FF;
             border-radius: 16px;
             background-color: #C0EDFC;
             font-size: 16px;
-            font-family: 'Rubik', sans-serif; 
+            font-family: 'Rubik', sans-serif;
             width: 100%;
         }
 
-        input[type="text"], input[type="email"] {
+        input[type="text"],
+        input[type="email"] {
             height: 72px;
         }
 
@@ -243,7 +259,7 @@
             width: 20%;
             margin: auto;
             background-color: #06A3DA;
-            font-family: 'Rubik', sans-serif; 
+            font-family: 'Rubik', sans-serif;
             color: #fff;
             border: none;
             border-radius: 15px;
@@ -285,11 +301,12 @@
             font-size: 24px;
         }
 
-        .info-item .info-title{
+        .info-item .info-title {
             color: #06A3DA;
         }
 
-        .info-title, .info-detail {
+        .info-title,
+        .info-detail {
             font-family: 'Rubik', sans-serif;
         }
 
@@ -318,6 +335,7 @@
             .forms-container {
                 flex-direction: column;
             }
+
             .form-box {
                 margin: 10px 0;
             }
@@ -330,21 +348,24 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <img src="../img/logo.png" alt="Logo" class="logo">
         <nav>
             <ul>
-               <li><a href="dashboard.php">Home</a></li>
+                <li><a href="dashboard.php">Home</a></li>
                 <li><a href="service.php">Service</a></li>
                 <li><a href="about-us.php">About Us</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>
-        <button class="profile-btn">
-            <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
-            <span class="profile-name">Profil</span>
-        </button>
+        <a href="profile.php">
+            <button class="profile-btn">
+                <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
+                <span class="profile-name"><?= htmlspecialchars($user['name']) ?></span>
+            </button>
+        </a>
     </header>
 
     <section class="hero">
@@ -365,24 +386,25 @@
         <div class="title-group2">
             <h1 class="title-1">Contact</h1>
         </div>
-        <p>Kami akan support anda dengan sepenuh hati. hubungi kami</p> 
+        <p>Kami akan support anda dengan sepenuh hati. hubungi kami</p>
         <p>untuk mendapat penawaran terbaik dari kami.</p>
 
         <div class="container">
             <div class="contact-form">
-                <form>
+                <form action="pesan.php" method="POST">
                     <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                        <input type="email" placeholder="Your Email" required>
+                        <input type="text" name="nama" placeholder="Your Name" required>
+                        <input type="email" name="email" placeholder="Your Email" required>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Subject" required>
+                        <input type="text" name="subjek" placeholder="Subject" required>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Message" required></textarea>
+                        <textarea name="pesan" placeholder="Message" required></textarea>
                     </div>
                     <button type="submit" class="btn-kirim">Kirim</button>
                 </form>
+
             </div>
             <div class="contact-info">
                 <div class="info-item">
@@ -423,11 +445,12 @@
                 </div>
             </div>
         </div>
-   
+
     </section>
 
     <footer>
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
 </body>
+
 </html>

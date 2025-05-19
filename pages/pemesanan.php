@@ -1,3 +1,12 @@
+<?php
+session_start();
+$conn = new mysqli("localhost", "root", "", "lautinaja");
+$user_id = $_SESSION['user_id'];
+
+$query = $conn->query("SELECT name FROM users WHERE id = $user_id");
+$user = $query->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -303,16 +312,18 @@
         <img src="../img/logo.png" alt="Logo" class="logo">
         <nav>
             <ul>
-                <li><a href="dashboard.html">Home</a></li>
-                <li><a href="#">Service</a></li>
-                <li><a href="about-us.html">About Us</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="dashboard.php">Home</a></li>
+                <li><a href="service.php">Service</a></li>
+                <li><a href="about-us.php">About Us</a></li>
+                <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>
-        <button class="profile-btn">
-            <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
-            <span class="profile-name">Profil</span>
-        </button>
+        <a href="profile.php">
+            <button class="profile-btn">
+                <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
+                <span class="profile-name"><?= htmlspecialchars($user['name']) ?></span>
+            </button>
+        </a>
     </header>
 
     <section class="hero">
@@ -338,7 +349,7 @@
         <p>ketepatan waktu. Isi detail pengiriman dan pesan sekarang!</p>
 
         <div class="container">
-            <form action="#" method="POST">
+            <form action="savepesan.php" method="POST">
                 <div class="form-group">
                     <label for="nama">Nama Anda</label>
                     <input type="text" id="nama" name="nama" placeholder="Masukkan Nama Anda">

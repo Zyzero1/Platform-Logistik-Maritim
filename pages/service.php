@@ -1,3 +1,12 @@
+<?php
+session_start();
+$conn = new mysqli("localhost", "root", "", "lautinaja");
+$user_id = $_SESSION['user_id'];
+
+$query = $conn->query("SELECT name FROM users WHERE id = $user_id");
+$user = $query->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -325,10 +334,12 @@
                 <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>
-        <button class="profile-btn">
-            <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
-            <span class="profile-name">Profil</span>
-        </button>
+        <a href="profile.php">
+            <button class="profile-btn">
+                <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
+                <span class="profile-name"><?= htmlspecialchars($user['name']) ?></span>
+            </button>
+        </a>
     </header>
 
     <section class="hero">
@@ -400,7 +411,7 @@
         </div>
     </section>
 
-    <a href="#pemesanan" class="floating-button" title="Menu Pemesanan">+</a>
+    <a href="pemesanan.php" class="floating-button" title="Menu Pemesanan">+</a>
 
     <footer>
         <p>2025 © Lautin Aja. All Rights Reserved.</p>

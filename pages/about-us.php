@@ -1,3 +1,12 @@
+<?php
+session_start();
+$conn = new mysqli("localhost", "root", "", "lautinaja");
+$user_id = $_SESSION['user_id'];
+
+$query = $conn->query("SELECT name FROM users WHERE id = $user_id");
+$user = $query->fetch_assoc();
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -276,10 +285,12 @@
                 <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>
-        <button class="profile-btn">
-            <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
-            <span class="profile-name">Profil</span>
-        </button>
+        <a href="profile.php">
+            <button class="profile-btn">
+                <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
+                <span class="profile-name"><?= htmlspecialchars($user['name']) ?></span>
+            </button>
+        </a>
     </header>
 
     <section class="hero">
@@ -316,7 +327,7 @@
             </div>
         </div>
         <div class="button">
-            <button class="contact-btn">CONTACT</button>
+            <button class="contact-btn"><a href="contact.php">CONTACT</a></button>
         </div>
     </section>
 

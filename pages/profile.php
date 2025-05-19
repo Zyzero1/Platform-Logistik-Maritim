@@ -1,5 +1,16 @@
+<?php
+session_start();
+$conn = new mysqli("localhost", "root", "", "lautinaja");
+$user_id = $_SESSION['user_id'];
+
+$query = $conn->query("SELECT name FROM users WHERE id = $user_id");
+$user = $query->fetch_assoc();
+?>
+
+
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +20,11 @@
     <script src="https://kit.fontawesome.com/f4f5772ee5.js" crossorigin="anonymous"></script>
     <title>Lautin Aja Pemesanan</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             width: 100%;
@@ -83,8 +98,8 @@
         .profile-icon {
             width: 39px;
             height: 39px;
-            border-radius: 50%; 
-            margin-right: 20px; 
+            border-radius: 50%;
+            margin-right: 20px;
         }
 
         .profile-name {
@@ -163,7 +178,7 @@
         }
 
         .user-icon i {
-            font-size: 50px; 
+            font-size: 50px;
             color: #888;
         }
 
@@ -186,27 +201,31 @@
             .forms-container {
                 flex-direction: column;
             }
+
             .form-box {
                 margin: 10px 0;
             }
         }
     </style>
 </head>
+
 <body>
     <header>
         <img src="../img/logo.png" alt="Logo" class="logo">
         <nav>
             <ul>
-               <li><a href="dashboard.php">Home</a></li>
+                <li><a href="dashboard.php">Home</a></li>
                 <li><a href="service.php">Service</a></li>
                 <li><a href="about-us.php">About Us</a></li>
                 <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>
-        <button class="profile-btn">
-            <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
-            <span class="profile-name">Profil</span>
-        </button>
+        <a href="profile.php">
+            <button class="profile-btn">
+                <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
+                <span class="profile-name"><?= htmlspecialchars($user['name']) ?></span>
+            </button>
+        </a>
     </header>
 
     <div class="profile-container">
@@ -217,7 +236,7 @@
             </div>
             <div>
                 <label for="name">Name</label>
-                <input type="text" id="name" placeholder="..." />
+                <input type="name" id="name" placeholder="..." />
                 <span class="edit-icon">&#9998;</span>
             </div>
         </div>
@@ -238,4 +257,5 @@
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
 </body>
+
 </html>
