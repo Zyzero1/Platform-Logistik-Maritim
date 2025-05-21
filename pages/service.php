@@ -9,15 +9,24 @@ $user = $query->fetch_assoc();
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css ">
+    <script src="https://kit.fontawesome.com/f4f5772ee5.js" crossorigin="anonymous"></script>
     <title>Lautin Aja Service</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             width: 100%;
@@ -65,40 +74,71 @@ $user = $query->fetch_assoc();
         }
 
         nav li {
-            margin-left: 30px;
+            margin-left: 0px;
         }
 
-        nav a {
+        .nav-link {
+            font-size: 18px;
             color: #091E3E;
             text-decoration: none;
             font-family: 'Nunito', sans-serif;
-            font-size: 18px;
             font-weight: bold;
         }
 
-        .profile-btn {
-            background: none;
-            color: rgb(8, 8, 71);
-            border: none;
-            border-radius: 20px;
-            padding: 5px 15px;
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            margin-left: 20px;
+        .nav-link:hover {
+            color: #008CD8;
         }
 
         .profile-icon {
             width: 39px;
             height: 39px;
-            border-radius: 50%; 
-            margin-right: 20px; 
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
         }
 
         .profile-name {
             font-family: 'Nunito', sans-serif;
             font-weight: bold;
             font-size: 18px;
+        }
+
+        .dropdown-toggle {
+            background-color: #ffffff !important;
+            color: #091E3E !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-toggle:hover {
+            background-color: #f1f1f1 !important;
+        }
+
+        .dropdown-item {
+            color: #212529 !important;
+            display: flex;
+            align-items: center;
+            font-family: 'Nunito', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dropdown-item .fa-user,
+        .dropdown-item .fa-right-from-bracket {
+            margin-right: 14px;
+        }
+
+        /* Gaya ketika item diklik / aktif */
+        .dropdown-item.active,
+        .dropdown-item:active {
+            background-color: #015ec8 !important;
+            color: white !important;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f1f1f1;
         }
 
         /* Hero Section */
@@ -167,21 +207,21 @@ $user = $query->fetch_assoc();
         }
 
         .title-group2 {
-            text-align: center; 
+            text-align: center;
         }
 
         .title-group2 .title-1 {
-            font-size: 2.5rem; 
-            font-family: 'Nunito', sans-serif; 
-            font-weight: 800; 
+            font-size: 2.5rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
             margin-top: -15px;
             color: #091E3E;
         }
 
         .title-group2 .title-2 {
-            font-size: 2.5rem; 
-            font-family: 'Nunito', sans-serif; 
-            font-weight: 800; 
+            font-size: 2.5rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
             color: #091E3E;
             margin-top: -15px;
         }
@@ -190,15 +230,15 @@ $user = $query->fetch_assoc();
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 10px; 
+            margin-top: 10px;
         }
 
         .line {
             position: relative;
-            width: 150px; 
-            height: 5px; 
+            width: 150px;
+            height: 5px;
             border-radius: 10px;
-            background-color: #06A3DA; 
+            background-color: #06A3DA;
             overflow: hidden;
         }
 
@@ -206,25 +246,26 @@ $user = $query->fetch_assoc();
             position: absolute;
             top: 50%;
             left: 0;
-            width: 6px; 
+            width: 6px;
             height: 6px;
-            background-color: white; 
-            border-radius: 30%; 
+            background-color: white;
+            border-radius: 30%;
             transform: translate(-50%, -50%);
-            animation: move-dot 3s linear infinite alternate; 
+            animation: move-dot 3s linear infinite alternate;
         }
 
         @keyframes move-dot {
             0% {
-                left: 0; 
+                left: 0;
             }
+
             100% {
-                left: 100%; 
+                left: 100%;
             }
         }
 
         .services p {
-            font-family: 'Rubik', sans-serif; 
+            font-family: 'Rubik', sans-serif;
             color: #6B6A75;
             max-width: 800px;
             margin: 0 auto 0px;
@@ -251,14 +292,14 @@ $user = $query->fetch_assoc();
             margin: 20px auto 20px;
             background: #06A3DA;
             border-radius: 2px;
-            transform: rotate(45deg); 
+            transform: rotate(45deg);
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
         .vehicle-icon {
-            width: 36px; 
+            width: 36px;
             height: 36px;
             transform: rotate(-45deg);
             filter: brightness(0) invert(1);
@@ -295,7 +336,7 @@ $user = $query->fetch_assoc();
         }
 
         .floating-button:hover {
-            background-color: #0077b6; 
+            background-color: #0077b6;
         }
 
         /* Footer */
@@ -317,29 +358,44 @@ $user = $query->fetch_assoc();
             .forms-container {
                 flex-direction: column;
             }
+
             .form-box {
                 margin: 10px 0;
             }
         }
     </style>
 </head>
+
 <body>
-    <header>
+    <header class="d-flex align-items-center justify-content-between px-3 py-2">
         <img src="../img/logo.png" alt="Logo" class="logo">
-        <nav>
-            <ul>
-                <li><a href="dashboard.php">Home</a></li>
-                <li><a href="service.php">Service</a></li>
-                <li><a href="about-us.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
+        <nav class="flex-grow-1 text-center">
+            <ul class="nav justify-content-center mb-0">
+                <li class="nav-item"><a class="nav-link" href="dashboard.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="service.php">Service</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.php">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
             </ul>
         </nav>
-        <a href="profile.php">
-            <button class="profile-btn">
-                <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
+        <!-- Dropdown Menu -->
+        <div class="dropdown-center">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon me-2">
                 <span class="profile-name"><?= htmlspecialchars($user['name']) ?></span>
             </button>
-        </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="profile.php">
+                        <i class="fa-solid fa-user"></i> Account
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="login/Login-form.php">
+                        <i class="fa-solid fa-right-from-bracket"></i> Log out
+                    </a>
+                </li>
+            </ul>
+        </div>
     </header>
 
     <section class="hero">
@@ -362,7 +418,7 @@ $user = $query->fetch_assoc();
             <h1 class="title-1">Layanan Cargo dan Ekspedisi Murah</h1>
             <h1 class="title-2">Indonesia</h1>
         </div>
-        <p>Kami akan support anda dengan sepenuh hati, dengan memiliki tim yang handal</p> 
+        <p>Kami akan support anda dengan sepenuh hati, dengan memiliki tim yang handal</p>
         <p>akan menangani setiap barang kiriman yang ada, supaya pengiriman tepat </p>
         <p>waktu, aman, terjamin serta bisa terealisasi dengan baik pastinya.</p>
         <div class="line-container">
@@ -375,35 +431,35 @@ $user = $query->fetch_assoc();
             <div class="service-card">
                 <div class="service-icon">
                     <img src="../img/shipping.png" alt="vehicle Icon" class="vehicle-icon">
-                </div> 
+                </div>
                 <h4 class="service-title">Cargo Laut</h4>
                 <p class="service-desc">Kirim barang cepat & aman via kapal laut dengan rute pengiriman luas menjangkau seluruh indonesia</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <img src="../img/moving-truck.png" alt="vehicle Icon" class="vehicle-icon">
-                </div> 
+                </div>
                 <h4 class="service-title">Pengiriman Barang</h4>
                 <p class="service-desc">Kemudahan kirim barang ke seluruh indonesia dengan ongkos kirim paling murah</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <img src="../img/car.png" alt="vehicle Icon" class="vehicle-icon">
-                </div> 
+                </div>
                 <h4 class="service-title">Pengiriman Mobil</h4>
                 <p class="service-desc">Kirim mobil ke seluruh wilayah indonesia tanpa rasa khawatir</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <img src="../img/excavators.png" alt="vehicle Icon" class="vehicle-icon">
-                </div> 
+                </div>
                 <h4 class="service-title">Pengiriman Alat Berat</h4>
                 <p class="service-desc">Kirim alat berat Excavator, Dump, truk dan lainnya ke berbagai daerah di indonesia</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <img src="../img/motorcycle.png" alt="vehicle Icon" class="vehicle-icon">
-                </div> 
+                </div>
                 <h4 class="service-title">Pengiriman Motor</h4>
                 <p class="service-desc">Pengiriman motor dengan ongkos kirim paling murah, aman dan cepat</p>
             </div>
@@ -416,5 +472,8 @@ $user = $query->fetch_assoc();
     <footer>
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
+
+    <script src="../scripts/script.js"></script>
 </body>
+
 </html>

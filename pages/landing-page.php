@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css ">
+    <script src="https://kit.fontawesome.com/f4f5772ee5.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/styles.css">
     <title>Lautin Aja Jasa Cargo</title>
 </head>
+
 <body>
-    <header>
+    <header class="d-flex align-items-center justify-content-between px-3 py-2">
         <img src="../img/logo.png" alt="Logo" class="logo">
-        <nav>
-            <ul>
-                <li><a href="landing-page.php">Home</a></li>
-                <li><a href="service.php">Service</a></li>
-                <li><a href="about-us.php">About Us</a></li>
-                <li><a href="../pages/login/Login-form.php">Contact</a></li>
+        <nav class="flex-grow-1 text-center">
+            <ul class="nav justify-content-center mb-0">
+                <li class="nav-item"><a class="nav-link" href="dashboard.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="service.php">Service</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.php">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
             </ul>
         </nav>
-        <button class="profile-btn">
-            <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
-            <span class="profile-name">Profil</span>
-        </button>
     </header>
 
     <section class="hero">
@@ -58,7 +60,7 @@
             <h1 class="title-1">Layanan Cargo dan Ekspedisi Murah</h1>
             <h1 class="title-2">Indonesia</h1>
         </div>
-        <p>Kami akan support anda dengan sepenuh hati, dengan memiliki tim yang handal</p> 
+        <p>Kami akan support anda dengan sepenuh hati, dengan memiliki tim yang handal</p>
         <p>akan menangani setiap barang kiriman yang ada, supaya pengiriman tepat </p>
         <p>waktu, aman, terjamin serta bisa terealisasi dengan baik pastinya.</p>
         <div class="line-container">
@@ -71,35 +73,35 @@
             <div class="service-card">
                 <div class="service-icon">
                     <img src="../img/shipping.png" alt="vehicle Icon" class="vehicle-icon">
-                </div> 
+                </div>
                 <h4 class="service-title">Cargo Laut</h4>
                 <p class="service-desc">Kirim barang cepat & aman via kapal laut dengan rute pengiriman luas menjangkau seluruh indonesia</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <img src="../img/moving-truck.png" alt="vehicle Icon" class="vehicle-icon">
-                </div> 
+                </div>
                 <h4 class="service-title">Pengiriman Barang</h4>
                 <p class="service-desc">Kemudahan kirim barang ke seluruh indonesia dengan ongkos kirim paling murah</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <img src="../img/car.png" alt="vehicle Icon" class="vehicle-icon">
-                </div> 
+                </div>
                 <h4 class="service-title">Pengiriman Mobil</h4>
                 <p class="service-desc">Kirim mobil ke seluruh wilayah indonesia tanpa rasa khawatir</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <img src="../img/excavators.png" alt="vehicle Icon" class="vehicle-icon">
-                </div> 
+                </div>
                 <h4 class="service-title">Pengiriman Alat Berat</h4>
                 <p class="service-desc">Kirim alat berat Excavator, Dump, truk dan lainnya ke berbagai daerah di indonesia</p>
             </div>
             <div class="service-card">
                 <div class="service-icon">
                     <img src="../img/motorcycle.png" alt="vehicle Icon" class="vehicle-icon">
-                </div> 
+                </div>
                 <h4 class="service-title">Pengiriman Motor</h4>
                 <p class="service-desc">Pengiriman motor dengan ongkos kirim paling murah, aman dan cepat</p>
             </div>
@@ -110,4 +112,5 @@
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
 </body>
+
 </html>

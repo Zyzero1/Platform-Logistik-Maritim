@@ -9,15 +9,24 @@ $user = $query->fetch_assoc();
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css ">
+    <script src="https://kit.fontawesome.com/f4f5772ee5.js" crossorigin="anonymous"></script>
     <title>About Us</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: 'Arial', sans-serif;
@@ -64,34 +73,71 @@ $user = $query->fetch_assoc();
         }
 
         nav li {
-            margin-left: 30px;
+            margin-left: 0px;
         }
 
-        nav a {
+        .nav-link {
+            font-size: 18px;
             color: #091E3E;
             text-decoration: none;
             font-family: 'Nunito', sans-serif;
-            font-size: 18px;
             font-weight: bold;
         }
 
-        .profile-btn {
-            background: none;
-            color: rgb(8, 8, 71);
-            border: none;
-            border-radius: 20px;
-            padding: 5px 15px;
+        .nav-link:hover {
+            color: #008CD8;
+        }
+
+        .dropdown-toggle {
+            background-color: #ffffff !important;
+            /* Putih */
+            color: #091E3E !important;
+            /* Biru untuk teks */
+            border: none !important;
+            /* Hilangkan border default */
+            box-shadow: none !important;
+            padding: 8px 12px;
             display: flex;
             align-items: center;
-            cursor: pointer;
-            margin-left: 20px;
+        }
+
+        .dropdown-toggle:hover {
+            background-color: #f1f1f1 !important;
+        }
+
+        /* Gaya Default Item */
+        .dropdown-item {
+            color: #212529 !important;
+            /* Hitam gelap */
+            display: flex;
+            align-items: center;
+            font-family: 'Nunito', sans-serif;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dropdown-item .fa-user,
+        .dropdown-item .fa-right-from-bracket {
+            margin-right: 14px;
+        }
+
+        /* Gaya ketika item diklik / aktif */
+        .dropdown-item.active,
+        .dropdown-item:active {
+            background-color: #015ec8 !important;
+            color: white !important;
+        }
+
+        /* Gaya saat hover (opsional) */
+        .dropdown-item:hover {
+            background-color: #f1f1f1;
         }
 
         .profile-icon {
             width: 39px;
             height: 39px;
-            border-radius: 50%; 
-            margin-right: 20px; 
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
         }
 
         .profile-name {
@@ -147,7 +193,7 @@ $user = $query->fetch_assoc();
             font-size: 68px;
             margin-top: -35%;
             padding: 0;
-            line-height: 1.2; 
+            line-height: 1.2;
             font-family: 'Poppins', sans-serif;
             font-weight: 800;
             transform: translateX(-53.2%);
@@ -173,22 +219,22 @@ $user = $query->fetch_assoc();
         }
 
         .title-group2 {
-            margin-top: -40px; 
-            text-align: left; 
+            margin-top: -40px;
+            text-align: left;
             transform: translateX(3%);
         }
 
         .title-group2 .title-1 {
-            font-size: 20px; 
-            font-family: 'Nunito', sans-serif; 
-            font-weight: 800; 
+            font-size: 20px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
             color: #06A3DA;
         }
 
         .title-group2 .title-2 {
-            font-size: 2.5rem; 
-            font-family: 'Nunito', sans-serif; 
-            font-weight: 800; 
+            font-size: 2.5rem;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
             color: #091E3E;
             /* margin-top: -15px; */
         }
@@ -196,21 +242,21 @@ $user = $query->fetch_assoc();
         .line-container {
             display: flex;
             align-items: start;
-            margin-bottom: 50px; 
+            margin-bottom: 50px;
             margin-top: -7px;
         }
 
         .line {
             position: relative;
-            width: 196px; 
-            height: 5px; 
+            width: 196px;
+            height: 5px;
             border-radius: 10px;
-            background-color: #06A3DA; 
+            background-color: #06A3DA;
             overflow: hidden;
         }
 
         .title-group2 p {
-            font-family: 'Rubik', sans-serif; 
+            font-family: 'Rubik', sans-serif;
             color: #6B6A75;
             max-width: 800px;
             margin: 0 auto 0px;
@@ -268,29 +314,44 @@ $user = $query->fetch_assoc();
             .forms-container {
                 flex-direction: column;
             }
+
             .form-box {
                 margin: 10px 0;
             }
         }
     </style>
 </head>
+
 <body>
-    <header>
+    <header class="d-flex align-items-center justify-content-between px-3 py-2">
         <img src="../img/logo.png" alt="Logo" class="logo">
-        <nav>
-            <ul>
-                <li><a href="dashboard.php">Home</a></li>
-                <li><a href="service.php">Service</a></li>
-                <li><a href="about-us.php">About Us</a></li>
-                <li><a href="contact.php">Contact</a></li>
+        <nav class="flex-grow-1 text-center">
+            <ul class="nav justify-content-center mb-0">
+                <li class="nav-item"><a class="nav-link" href="dashboard.php">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="service.php">Service</a></li>
+                <li class="nav-item"><a class="nav-link" href="about-us.php">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
             </ul>
         </nav>
-        <a href="profile.php">
-            <button class="profile-btn">
-                <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
+        <!-- Dropdown Menu -->
+        <div class="dropdown-center">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon me-2">
                 <span class="profile-name"><?= htmlspecialchars($user['name']) ?></span>
             </button>
-        </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="profile.php">
+                        <i class="fa-solid fa-user"></i> Account
+                    </a>
+                </li>
+                <li>
+                    <a class="dropdown-item d-flex align-items-center" href="login/Login-form.php">
+                        <i class="fa-solid fa-right-from-bracket"></i> Log out
+                    </a>
+                </li>
+            </ul>
+        </div>
     </header>
 
     <section class="hero">
@@ -313,7 +374,7 @@ $user = $query->fetch_assoc();
                 <div class="line-container">
                     <div class="line"></div>
                 </div>
-                <p>Perusahaan yang bergerak dibidang logistik jasa pengiriman dan pindahan kantor. Dibawah</p> 
+                <p>Perusahaan yang bergerak dibidang logistik jasa pengiriman dan pindahan kantor. Dibawah</p>
                 <p>bendera <strong>PT. Kecil Kecilan</strong>, Kami berusaha memberikan harga yang kompetitif, </p>
                 <p>responsif, komunikatif, dan selalu meningkatkan pelayanan kepada customer.</p>
                 <p style="margin-top: 40px;"><strong>Lautin Aja</strong> memiliki banyak sekali cakupan wilayah tertentu di Indonesia. Layanan yang kami.</p>
@@ -334,5 +395,8 @@ $user = $query->fetch_assoc();
     <footer>
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
+
+    <script src="../scripts/script.js"></script>
 </body>
+
 </html>
