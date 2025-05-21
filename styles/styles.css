@@ -14,7 +14,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 5px 20px;
-    background: white;
+    background: rgb(255, 255, 255);
     color: rgb(15, 15, 15);
     z-index: 1000;
 }
@@ -41,27 +41,19 @@ nav ul {
 }
 
 nav li {
-    margin-left: 30px;
+    margin-left: 0px;
 }
 
-nav a {
+.nav-link {
+    font-size: 18px;
     color: #091E3E;
     text-decoration: none;
     font-family: 'Nunito', sans-serif;
-    font-size: 18px;
     font-weight: bold;
 }
 
-.profile-btn {
-    background: none;
-    color: rgb(8, 8, 71);
-    border: none;
-    border-radius: 20px;
-    padding: 5px 15px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    margin-left: 20px;
+.nav-link:hover {
+    color: #008CD8;
 }
 
 .profile-icon {
@@ -69,12 +61,53 @@ nav a {
     height: 39px;
     border-radius: 50%; 
     margin-right: 20px; 
+    object-fit: cover;
 }
 
 .profile-name {
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
     font-size: 18px;
+}
+
+.dropdown-toggle {
+    background-color: #ffffff !important; /* Putih */
+    color: #091E3E !important;             /* Biru untuk teks */
+    border: none !important;               /* Hilangkan border default */
+    box-shadow: none !important;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle:hover {
+    background-color: #f1f1f1 !important;
+}
+
+/* Gaya Default Item */
+.dropdown-item {
+    color: #212529 !important; /* Hitam gelap */
+    display: flex;
+    align-items: center;
+    font-family: 'Nunito', sans-serif;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.dropdown-item .fa-user,
+.dropdown-item .fa-right-from-bracket{
+    margin-right: 14px;
+}
+
+/* Gaya ketika item diklik / aktif */
+.dropdown-item.active,
+.dropdown-item:active {
+    background-color: #015ec8 !important;
+    color: white !important;
+}
+
+/* Gaya saat hover (opsional) */
+.dropdown-item:hover {
+    background-color: #f1f1f1;
 }
 
 /* Hero Section */
