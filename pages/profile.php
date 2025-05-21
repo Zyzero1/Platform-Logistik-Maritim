@@ -112,74 +112,150 @@ $user = $query->fetch_assoc();
             background-color: #10AEE5;
             padding: 20px;
             margin: 60px auto;
-            border-radius: 8px;
+            border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 900px;
-            height: 580px;
+            height: 450px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
         .profile-header {
-            font-size: 18px;
+            color: #ffffff;
+            font-family: 'Nunito', sans-serif;
+            font-size: 24px;
             font-weight: bold;
+            transform: translateX(-8px);
             margin-bottom: 20px;
+        }
+
+        .profile-row {
+            display: flex;
+            gap: 50px;
+            align-items: flex-end;
+            margin-bottom: 20px;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .user-icon {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            overflow: hidden;
+        }
+
+        .user-icon img {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .user-icon i {
+            font-size: 30px;
+            color: #888;
+        }
+
+        .edit-overlay-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 7px;
+            font-size: 14px;
+            color: #007bff;
+            border-radius: 50%;
+            padding: 2px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .edit-overlay-icon:hover {
+            color: #0056b3;
+        }
+
+        .form-fields {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 200px;
         }
 
         .profile-section {
             display: flex;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 35px;
+            gap: 30px;
             width: 100%;
         }
 
         .profile-section label {
+            color: #ffffff;
+            text-align: right;
+            font-family: 'Nunito', sans-serif;
             width: 100px;
             font-weight: bold;
         }
 
-        .profile-section input {
-            width: 200px;
-            padding: 8px;
-            margin-left: auto;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
         }
 
-        input {
+        .input-wrapper input {
+            padding-right: 30px;
+            width: 400px;
+            padding: 15px;
             margin-left: auto;
+            border: 1px solid #ccc;
+            border-radius: 10px;
         }
 
         .edit-icon {
-            margin-left: 10px;
+            position: absolute;
+            right: 10px;
             cursor: pointer;
+            font-size: 14px;
+        }
+
+        .button-wrapper {
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
 
         .update-button {
-            margin-top: 20px;
-            padding: 8px 16px;
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .user-icon {
+            padding: 15px 16px;
+            font-family: 'Nunito', sans-serif;
             width: 100px;
-            height: 100px;
-            background-color: #f1f1f1;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 20px;
+            background-color: #ffffff;
+            color: #10AEE5;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transform: translateX(65px);
+            transition: background-color 0.3s ease;
         }
 
-        .user-icon i {
-            font-size: 50px;
-            color: #888;
+        .update-button:hover {
+            background-color: #1568bb;
+            color: #fff;
         }
 
         /* Footer */
@@ -229,33 +305,65 @@ $user = $query->fetch_assoc();
     </header>
 
     <div class="profile-container">
-        <h2 class="profile-header">Profil</h2>
-        <div class="profile-section">
-            <div class="user-icon">
-                <i class="fa-solid fa-user"></i>
+        <div class="profile-row">
+
+            <div class="left-column">
+                <h2 class="profile-header">Profil</h2>
+                <div class="user-icon" id="editIconContainer">
+                    <img id="profile-pic" src="../img/user.png" alt="user-icon">
+                    <i class="fa-solid fa-pen-to-square edit-overlay-icon" onclick="document.getElementById('fileInput').click();"></i>
+                </div>
+                <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="handleImageUpload(event)">
             </div>
-            <div>
-                <label for="name">Name</label>
-                <input type="name" id="name" placeholder="..." />
-                <span class="edit-icon">&#9998;</span>
+
+            <div class="form-fields">
+                <div class="profile-section">
+                    <label for="name">Name</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="name" placeholder="..." />
+                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <label for="email">Email</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" placeholder="..." />
+                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="..." />
+                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                    </div>
+                </div>
+                <div class="button-wrapper">
+                    <button class="update-button">Update</button>
+                </div>
             </div>
         </div>
-        <div class="profile-section">
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="..." />
-            <span class="edit-icon">&#9998;</span>
-        </div>
-        <div class="profile-section">
-            <label for="password">Password</label>
-            <input type="password" id="password" placeholder="..." />
-            <span class="edit-icon">&#9998;</span>
-        </div>
-        <button class="update-button">Update</button>
     </div>
 
     <footer>
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        function handleImageUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // Ganti src gambar profil dengan gambar baru
+                    document.getElementById('profile-pic').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+    </script>
 </body>
 
 </html>

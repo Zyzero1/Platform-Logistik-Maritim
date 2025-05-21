@@ -9,6 +9,7 @@ $user = $query->fetch_assoc();
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +21,7 @@ $user = $query->fetch_assoc();
     <link rel="stylesheet" href="../styles/dashboard.css">
     <title>Lautin Aja Dashboard</title>
 </head>
+
 <body>
     <header>
         <img src="../img/logo.png" alt="Logo" class="logo">
@@ -31,7 +33,7 @@ $user = $query->fetch_assoc();
                 <li><a href="contact.php">Contact</a></li>
             </ul>
         </nav>
-       <a href="profile.php">
+        <a href="profile.php">
             <button class="profile-btn">
                 <img src="../img/profil-web.png" alt="Profile Picture" class="profile-icon">
                 <span class="profile-name"><?= htmlspecialchars($user['name']) ?></span>
@@ -64,7 +66,7 @@ $user = $query->fetch_assoc();
         <div class="title-group2">
             <h1 class="title-1">Riwayat Pemesanan</h1>
         </div>
-        <p>Terima kasih! Kami siap memastikan kiriman Anda aman, tepat waktu, dan </p> 
+        <p>Terima kasih! Kami siap memastikan kiriman Anda aman, tepat waktu, dan </p>
         <p>terjamin. berikut daftar pesanan anda bersama kami.</p>
         <div class="line-container2">
             <div class="line">
@@ -135,7 +137,7 @@ $user = $query->fetch_assoc();
             <div class="order-status">
                 <span class="status-complete">Selesai</span>
             </div>
-        </div>   
+        </div>
 
     </section>
 
@@ -143,4 +145,5 @@ $user = $query->fetch_assoc();
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
 </body>
+
 </html>
