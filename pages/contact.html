@@ -280,20 +280,28 @@
         }
 
         .btn-kirim {
-            padding: 17px 24px;
-            width: 20%;
-            margin: auto;
             background-color: #06A3DA;
-            font-family: 'Rubik', sans-serif;
-            color: #fff;
+            color: #ffffff;
             border: none;
-            border-radius: 15px;
+            width: 120px;
+            margin: 0px auto;
+            padding: 13px 20px;
+            border-radius: 10px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-kirim a{
+            text-decoration: none;
+            color: inherit;
         }
 
         .btn-kirim:hover {
-            background-color: #058fc1;
+            background-color: #0684b1;
+            color: #fff;
         }
 
         .contact-info {
@@ -339,6 +347,22 @@
             font-size: 16px;
             color: #6B6A75;
             width: 180px;
+        }
+
+        #successModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #00b4d8;
+            padding: 20px;
+            width: 415px;
+            border-radius: 10px;
+            font-family: 'Nunito', sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            text-align: center;
         }
 
         /* Footer */
@@ -440,10 +464,21 @@
                     <div class="form-group">
                         <textarea name="pesan" placeholder="Message" required></textarea>
                     </div>
-                    <button type="submit" class="btn-kirim"><a href="contact.html">Kirim</a></button>
+                    <button type="button" class="btn-kirim" onclick="validateForm()">Kirim</button>
                 </form>
-
             </div>
+
+            <!-- Modal Sukses -->
+            <div id="successModal" style="display:none;">
+                <div class="modal-body">
+                    <i class="fa-regular fa-circle-check" style="font-size:130px; color:#fff; margin:20px auto; display:block;"></i>
+                    <h2 style="color:white; text-align:center; margin-bottom: 20px; font-size: 28px; font-weight: bolder;">Pesanan Terkirim</h2>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="closeModal()" style="padding:10px 20px; border:none; font-weight: bolder; border-radius:8px; cursor:pointer;">Close</button>
+                </div>
+            </div>
+
             <div class="contact-info">
                 <div class="info-item">
                     <div>
@@ -489,6 +524,35 @@
     <footer>
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            if (isValid) {
+            showModalSuccess();
+        } else {
+            showModal("Lengkapi semua data sebelum mengirim.");
+        }
+    }
+
+    function showModalSuccess() {
+        document.getElementById('successModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('successModal').style.display = 'none';
+    }
+
+    function showModal(message) {
+        document.getElementById('modalMessage').textContent = message;
+        document.getElementById('errorModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('errorModal').style.display = 'none';
+    }
+    </script>
 
     <script src="../scripts/script.js"></script>
 </body>
