@@ -174,3 +174,95 @@
     color: #00CE26;
     font-weight: bold;
 }
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 100%;
+    max-width: 900px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.modal-content h2 {
+    font-size: 28px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 900;
+    color: #06A3DA;
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-modal:hover,
+.close-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.order-details-modal {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.order-details-modal .order-box {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.order-details-modal .order-icon img {
+    width: 50px;
+    height: 50px;
+}
+
+.order-details-modal .order-details h4 {
+    margin: 0;
+}
+
+.order-details-modal .order-details p {
+    margin: 5px 0;
+}
+
+.order-details-modal .location-container {
+    display: flex;
+    align-items: center;
+}
+
+.order-details-modal .order-location i {
+    margin-right: 10px;
+}
+
+.order-details-modal .location-text .address {
+    font-weight: bold;
+}
+
+.order-details-modal .order-status .status-complete {
+    color: green;
+}
+
+#statusModal { z-index: 9999; }
+#modalOverlay { z-index: 9998; }
