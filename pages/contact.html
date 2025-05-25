@@ -257,9 +257,15 @@
             min-width: 0;
         }
 
+        .input-wrapper {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+
         input,
         textarea {
-            padding: 12px;
+            padding: 22px;
             border: 1px solid #A3E7FF;
             border-radius: 16px;
             background-color: #C0EDFC;
@@ -277,6 +283,30 @@
             resize: vertical;
             min-height: 150px;
             width: 552px;
+        }
+
+        input:focus,
+        textarea:focus {
+            border: 2px solid #06A3DA !important; 
+            outline: none;
+        }
+
+        input:-webkit-autofill,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 1000px #C0EDFC inset !important;
+            box-shadow: 0 0 0 1000px #C0EDFC inset !important;
+            -webkit-text-fill-color: #333 !important;
+            border: 1px solid #A3E7FF !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+
+        textarea:-webkit-autofill {
+            -webkit-box-shadow: 0 0 0 1000px #C0EDFC inset !important;
+            box-shadow: 0 0 0 1000px #C0EDFC inset !important;
+            -webkit-text-fill-color: #333 !important;
+            border: 1px solid #A3E7FF !important;
         }
 
         .btn-kirim {
@@ -349,6 +379,22 @@
             width: 180px;
         }
 
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 0px;
+            margin-left: 5px;
+            min-height: 18px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 400;
+            text-align: left;
+            display: block;
+        }
+
+        .input-error {
+            border: 2px solid red !important;
+        }
+
         #successModal {
             display: none;
             position: fixed;
@@ -363,6 +409,32 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
             z-index: 9999;
             text-align: center;
+        }
+
+        #errorModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            text-align: center;
+            max-width: 300px;
+        }
+
+        .modal-footer button {
+            background: #fff;
+            color: #00b4d8;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .modal-footer button:hover {
+            background: #46e0ff;
+            color: #fff;
         }
 
         /* Footer */
@@ -455,14 +527,34 @@
             <div class="contact-form">
                 <form action="#" method="POST">
                     <div class="form-group">
-                        <input type="text" name="nama" placeholder="Your Name" required>
-                        <input type="email" name="email" placeholder="Your Email" required>
+                        <div class="input-wrapper" style="flex:1;">
+                            <input type="text" name="nama" id="nama" placeholder="Your Name"
+                                onblur="validateField('nama', 'error-nama', 'Nama harus diisi')"
+                                oninput="validateField('nama', 'error-nama', 'Nama harus diisi')">
+                            <div class="error" id="error-nama"></div>
+                        </div>
+                        <div class="input-wrapper" style="flex:1;">
+                            <input type="email" name="email" id="email" placeholder="Your Email"
+                                onblur="validateField('email', 'error-email', 'Email harus diisi')"
+                                oninput="validateField('email', 'error-email', 'Email harus diisi')">
+                            <div class="error" id="error-email"></div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <input type="text" name="subjek" placeholder="Subject" required>
+                        <div class="input-wrapper">
+                            <input type="text" name="subjek" id="subjek" placeholder="Subject"
+                                onblur="validateField('subjek', 'error-subjek', 'Subjek harus diisi')"
+                                oninput="validateField('subjek', 'error-subjek', 'Subjek harus diisi')">
+                            <div class="error" id="error-subjek"></div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <textarea name="pesan" placeholder="Message" required></textarea>
+                        <div class="input-wrapper">
+                            <textarea name="pesan" id="pesan" placeholder="Message"
+                                onblur="validateField('pesan', 'error-pesan', 'Pesan harus diisi')"
+                                oninput="validateField('pesan', 'error-pesan', 'Pesan harus diisi')"></textarea>
+                            <div class="error" id="error-pesan"></div>
+                        </div>
                     </div>
                     <button type="button" class="btn-kirim" onclick="validateForm()">Kirim</button>
                 </form>
@@ -472,7 +564,7 @@
             <div id="successModal" style="display:none;">
                 <div class="modal-body">
                     <i class="fa-regular fa-circle-check" style="font-size:130px; color:#fff; margin:20px auto; display:block;"></i>
-                    <h2 style="color:white; text-align:center; margin-bottom: 20px; font-size: 28px; font-weight: bolder;">Pesanan Terkirim</h2>
+                    <h2 style="color:white; text-align:center; margin-bottom: 20px; font-size: 28px; font-weight: bolder;">Pesan Terkirim</h2>
                 </div>
                 <div class="modal-footer">
                     <button onclick="closeModal()" style="padding:10px 20px; border:none; font-weight: bolder; border-radius:8px; cursor:pointer;">Close</button>
@@ -526,10 +618,35 @@
     </footer>
 
     <script>
-        function validateForm() {
-            let isValid = true;
+    function validateField(fieldId, errorId, errorMessage) {
+        const field = document.getElementById(fieldId);
+        const value = field.value.trim();
+        const errorDiv = document.getElementById(errorId);
+        if (!value) {
+            errorDiv.textContent = errorMessage;
+            field.classList.add('input-error');
+            return false;
+        } else {
+            errorDiv.textContent = '';
+            field.classList.remove('input-error');
+            return true;
+        }
+    }
 
-            if (isValid) {
+    // Fungsi validasi seluruh form
+    function validateForm() {
+        let isValid = true;
+
+        // Validasi Nama
+        if (!validateField('nama', 'error-nama', 'Nama harus diisi')) isValid = false;
+        // Validasi Email
+        if (!validateField('email', 'error-email', 'Email harus diisi')) isValid = false;
+        // Validasi Subjek
+        if (!validateField('subjek', 'error-subjek', 'Subjek harus diisi')) isValid = false;
+        // Validasi Pesan
+        if (!validateField('pesan', 'error-pesan', 'Pesan harus diisi')) isValid = false;
+
+        if (isValid) {
             showModalSuccess();
         } else {
             showModal("Lengkapi semua data sebelum mengirim.");
@@ -549,12 +666,16 @@
         document.getElementById('errorModal').style.display = 'block';
     }
 
-    function closeModal() {
+    function closeErrorModal() {
         document.getElementById('errorModal').style.display = 'none';
     }
     </script>
 
     <script src="../scripts/script.js"></script>
 </body>
+<div id="errorModal" style="display:none; position:fixed; top:20%; left:50%; transform:translate(-50%, -50%); background:#ffffff; padding:20px; border-radius:10px; border: 1px solid #00b4d8; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:999;">
+    <p id="modalMessage" style="color:red; font-weight:bold; font-family: 'Nunito', sans-serif;">Lengkapi semua data sebelum mengirim.</p>
+    <button onclick="closeErrorModal()" style="margin-top:10px; padding:8px 16px; background:#00b4d8; color:#fff; border:none; border-radius:5px; cursor:pointer;">Tutup</button>
+</div>
 
 </html>

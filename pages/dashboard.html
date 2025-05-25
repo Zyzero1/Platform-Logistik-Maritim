@@ -20,7 +20,7 @@
         <img src="../img/logo.png" alt="Logo" class="logo">
         <nav class="flex-grow-1 text-center">
             <ul class="nav justify-content-center mb-0">
-                 <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="dashboard.html">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="service.html">Service</a></li>
                 <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
                 <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -62,8 +62,10 @@
         <div class="form-box white-form2">
             <h3 class="form-title">CEK STATUS</h3>
             <div class="input-group2">
-                <input type="text" placeholder="LA-XXXXXXXX">
-                <button class="check-btn2"><i class="fa fa-paper-plane" aria-hidden="true"></i>CHECK</button>
+                <input type="text" id="trackingInput" placeholder="LA-XXXXXXXX">
+                <button class="check-btn2" onclick="checkStatus()">
+                    <i class="fa fa-paper-plane" aria-hidden="true"></i>CHECK
+                </button>
             </div>
         </div>
     </section>
@@ -150,6 +152,19 @@
     <footer>
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
+
+    <div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:9998;"></div>
+    <!-- Modal -->
+    <div class="modal" id="statusModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>CEK STATUS</h2>
+            <div id="successMessage" style="color: #22bb33; font-weight: bold; margin-bottom: 10px; display: none;"></div>
+            <div id="orderDetails" class="order-details-modal">
+                <!-- Order details will be dynamically added here -->
+            </div>
+        </div>
+    </div>
 
     <script src="../scripts/script.js"></script>
 </body>
