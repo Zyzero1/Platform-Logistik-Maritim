@@ -161,6 +161,7 @@ nav li {
     font-size: 20px;
     margin-bottom: 10px;
     font-family: 'Nunito', sans-serif;
+    color: #ffffff;
 }
 
 .hero h1 {
@@ -253,6 +254,8 @@ nav li {
 
 .input-group input[type="text"] {
     flex: 1; 
+    font-size: 20px;
+    border-radius: 10px !important;
 }
 
 input[type="text"] {
