@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css ">
     <script src="https://kit.fontawesome.com/f4f5772ee5.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/styles.css">
+    <link rel="stylesheet" href="../styles/modal-landingPage.css">
     <title>Lautin Aja Jasa Cargo</title>
 </head>
 
@@ -43,15 +44,19 @@
         <div class="form-box blue-form">
             <h3 class="form-title">CEK TARIF</h3>
             <div class="input-group">
-                <input type="text" placeholder="Tanjungpinang">
-                <input type="text" placeholder="Kota Tujuan">
+                <input type="text" id="originCity" placeholder="Tanjungpinang">
+                <input type="text" id="destinationCity" placeholder="Kota Tujuan">
             </div>
-            <button class="search-btn"><i class="fas fa-search"></i> SEARCH</button>
+            <button class="search-btn" onclick="cekSearch()">
+                <i class="fas fa-search"></i> SEARCH
+            </button>
         </div>
         <div class="form-box white-form">
             <h3 class="form-title">CEK STATUS</h3>
-            <input type="text" placeholder="LA-XXXXXXXX">
-            <button class="check-btn"><i class="fas fa-paper-plane"></i> CHECK</button>
+            <input type="text" id="trackingInputMain" placeholder="LA-XXXXXXXX">
+            <button class="check-btn" onclick="checkStatus()">
+                <i class="fas fa-paper-plane"></i> CHECK
+            </button>
         </div>
     </section>
 
@@ -111,6 +116,57 @@
     <footer>
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
+
+    <div id="modalOverlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.5); z-index:9998;"></div>
+    <!-- The Modal -->
+    <div class="modal" id="statusModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>CEK HARGA</h2>
+
+            <!-- Form inputs -->
+            <div class="result-group">
+                <label>Kota Asal:</label>
+                <p id="display-origin" class="readonly-box">-</p>
+            </div>
+
+            <div class="result-group">
+                <label>Kota Tujuan:</label>
+                <p id="display-destination" class="readonly-box">-</p>
+            </div>
+
+            <div class="weight-group">
+                <label for="weight">Berat</label>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <input type="number" id="weight" placeholder="0" min="0">
+                    <span>KG</span>
+                </div>
+            </div>
+
+            <!-- Cek button -->
+            <button class="cek-btn" id="cekButton">CEK</button>
+
+            <!-- Total Pembayaran -->
+            <div class="total-payment">
+                <p>Total Pembayaran:</p>
+                <input type="text" id="totalPayment" readonly placeholder="Rp. 0">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal2" id="statusModal2">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h2>CEK STATUS</h2>
+            <input type="text" id="trackingInput" placeholder="LA-XXXXXXXX" readonly>
+            <div id="successMessage" class="success-message-modal"></div>
+            <div id="orderDetails" class="order-details-modal">
+                <!-- Order details will be dynamically added here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/landing-page.js"></script>
 </body>
 
 </html>

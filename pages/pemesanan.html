@@ -614,7 +614,7 @@
                     <h2 style="color:white; text-align:center; margin-bottom: 20px; font-size: 28px; font-weight: bolder;">Pesanan Berhasil Dibuat</h2>
                 </div>
                 <div class="modal-footer">
-                    <button onclick="closeModal(); window.location.href='cek-resi.html'" style="padding:10px 20px; border:none; font-weight: bolder; border-radius:8px; cursor:pointer;">CEK RESI</button>
+                    <button onclick="closeModalSuccess(); window.location.href='cek-resi.html'" style="padding:10px 20px; border:none; font-weight: bolder; border-radius:8px; cursor:pointer;">CEK RESI</button>
                 </div>
             </div>
         </div>
@@ -679,7 +679,7 @@
         document.getElementById('successModal').style.display = 'block';
     }
 
-    function closeModal() {
+    function closeModalSuccess() {
         document.getElementById('successModal').style.display = 'none';
     }
 
@@ -688,7 +688,7 @@
         document.getElementById('errorModal').style.display = 'block';
     }
 
-    function closeModal() {
+    function closeModalError() {
         document.getElementById('errorModal').style.display = 'none';
     }
     </script>
@@ -698,7 +698,7 @@
 <!-- Modal Error -->
 <div id="errorModal" style="display:none; position:fixed; top:20%; left:50%; transform:translate(-50%, -50%); background:#ffffff; padding:20px; border-radius:10px; border: 1px solid #00b4d8; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:999;">
     <p id="modalMessage" style="color:red; font-weight:bold; font-family: 'Nunito', sans-serif;">Lengkapi semua data sebelum mengirim.</p>
-    <button onclick="closeModal()" style="margin-top:10px; padding:8px 16px; background:#00b4d8; color:#fff; border:none; border-radius:5px; cursor:pointer;">Tutup</button>
+    <button onclick="closeModalError()" style="margin-top:10px; padding:8px 16px; background:#00b4d8; color:#fff; border:none; border-radius:5px; cursor:pointer;">Tutup</button>
 </div>
 
 </html>

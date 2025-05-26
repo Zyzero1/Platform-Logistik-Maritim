@@ -62,7 +62,7 @@
         <div class="form-box white-form2">
             <h3 class="form-title">CEK STATUS</h3>
             <div class="input-group2">
-                <input type="text" id="trackingInput" placeholder="LA-XXXXXXXX">
+                <input type="text" id="trackingInputMain" placeholder="LA-XXXXXXXX">
                 <button class="check-btn2" onclick="checkStatus()">
                     <i class="fa fa-paper-plane" aria-hidden="true"></i>CHECK
                 </button>
@@ -81,72 +81,155 @@
                 <div class="dot"></div>
             </div>
         </div>
-        <div class="order-box">
-            <div class="order-icon">
-                <img src="../img/motorcycle.png" alt="Motor Icon">
-            </div>
-            <div class="order-details">
-                <h4>Pengiriman Motor</h4>
-                <p>Rp. 500.000</p>
-            </div>
-            <div class="location-container">
-                <div class="order-location">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <div class="location-text">
-                        <span class="address">Batam - Natuna</span>
-                        <span class="date">12 Maret 2025</span>
+        <div class="container mt-5">
+            <div id="order-container">
+
+                <!-- Order Box Page 1 -->
+                <div class="order-box">
+                    <div class="order-icon">
+                        <img src="../img/motorcycle.png" alt="Motor Icon">
+                    </div>
+                    <div class="order-details">
+                        <h4>Pengiriman Motor</h4>
+                        <p>Rp. 500.000</p>
+                    </div>
+                    <div class="location-container">
+                        <div class="order-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="location-text">
+                                <span class="address">Batam - Natuna</span>
+                                <span class="date">12 Maret 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-status">
+                        <span class="status-complete">Selesai</span>
                     </div>
                 </div>
-            </div>
-            <div class="order-status">
-                <span class="status-complete">Selesai</span>
-            </div>
-        </div>
 
-        <div class="order-box">
-            <div class="order-icon">
-                <img src="../img/car.png" alt="Mobil Icon">
-            </div>
-            <div class="order-details">
-                <h4>Pengiriman Mobil</h4>
-                <p>Rp. 1.000.000</p>
-            </div>
-            <div class="location-container">
-                <div class="order-location">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <div class="location-text">
-                        <span class="address">Lingga - Batam</span>
-                        <span class="date">14 Juni 2024</span>
+                <div class="order-box">
+                    <div class="order-icon">
+                        <img src="../img/car.png" alt="Mobil Icon">
+                    </div>
+                    <div class="order-details">
+                        <h4>Pengiriman Mobil</h4>
+                        <p>Rp. 1.000.000</p>
+                    </div>
+                    <div class="location-container">
+                        <div class="order-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="location-text">
+                                <span class="address">Lingga - Batam</span>
+                                <span class="date">14 Juni 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-status">
+                        <span class="status-process">Dalam perjalanan</span>
                     </div>
                 </div>
-            </div>
-            <div class="order-status">
-                <span class="status-complete">Selesai</span>
-            </div>
-        </div>
 
-        <div class="order-box">
-            <div class="order-icon">
-                <img src="../img/shipping.png" alt="Cargo Laut Icon">
-            </div>
-            <div class="order-details">
-                <h4>Cargo Laut</h4>
-                <p>Rp. 100.000</p>
-            </div>
-            <div class="location-container">
-                <div class="order-location">
-                    <i class="fa-solid fa-location-dot"></i>
-                    <div class="location-text">
-                        <span class="address">Batam - Tanjung Pinang</span>
-                        <span class="date">10 Mei 2024</span>
+                <div class="order-box">
+                    <div class="order-icon">
+                        <img src="../img/shipping.png" alt="Cargo Laut Icon">
+                    </div>
+                    <div class="order-details">
+                        <h4>Cargo Laut</h4>
+                        <p>Rp. 100.000</p>
+                    </div>
+                    <div class="location-container">
+                        <div class="order-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="location-text">
+                                <span class="address">Batam - Tanjung Pinang</span>
+                                <span class="date">10 Mei 2025</span>
+                            </div>
+                        </div>
+                        <div class="order-status">
+                            <span class="status-complete">Selesai</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="order-status">
-                <span class="status-complete">Selesai</span>
-            </div>
-        </div>
 
+                <!-- Order Box Page 2 -->
+                <div class="order-box">
+                    <div class="order-icon">
+                        <img src="../img/motorcycle.png" alt="Motor Icon">
+                    </div>
+                    <div class="order-details">
+                        <h4>Pengiriman Motor</h4>
+                        <p>Rp. 600.000</p>
+                    </div>
+                    <div class="location-container">
+                        <div class="order-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="location-text">
+                                <span class="address">Tanjung Pinang - Karimun</span>
+                                <span class="date">20 Mei 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-status">
+                        <span class="status-complete">Selesai</span>
+                    </div>
+                </div>
+
+                <div class="order-box">
+                    <div class="order-icon">
+                        <img src="../img/car.png" alt="Mobil Icon">
+                    </div>
+                    <div class="order-details">
+                        <h4>Pengiriman Mobil</h4>
+                        <p>Rp. 1.200.000</p>
+                    </div>
+                    <div class="location-container">
+                        <div class="order-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="location-text">
+                                <span class="address">Batam - Bintan</span>
+                                <span class="date">25 Mei 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-status">
+                        <span class="status-process">Dalam perjalanan</span>
+                    </div>
+                </div>
+
+                <div class="order-box">
+                    <div class="order-icon">
+                        <img src="../img/shipping.png" alt="Cargo Laut Icon">
+                    </div>
+                    <div class="order-details">
+                        <h4>Cargo Laut</h4>
+                        <p>Rp. 120.000</p>
+                    </div>
+                    <div class="location-container">
+                        <div class="order-location">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <div class="location-text">
+                                <span class="address">Natuna - Anambas</span>
+                                <span class="date">30 Mei 2025</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-status">
+                        <span class="status-complete">Selesai</span>
+                    </div>
+                </div>
+                <!-- Pagination -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center" id="pagination">
+                        <li class="page-item disabled" data-page="prev">
+                            <a class="page-link" href="#">Previous</a>
+                        </li>
+                        <li class="page-item active" data-page="1"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item" data-page="2"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item" data-page="next"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>    
     </section>
 
     <footer>
@@ -159,7 +242,8 @@
         <div class="modal-content">
             <span class="close-modal" onclick="closeModal()">&times;</span>
             <h2>CEK STATUS</h2>
-            <div id="successMessage" style="color: #22bb33; font-weight: bold; margin-bottom: 10px; display: none;"></div>
+            <input type="text" id="trackingInput" placeholder="LA-XXXXXXXX" readonly>
+            <div id="successMessage" class="success-message-modal"></div>
             <div id="orderDetails" class="order-details-modal">
                 <!-- Order details will be dynamically added here -->
             </div>
@@ -167,6 +251,7 @@
     </div>
 
     <script src="../scripts/script.js"></script>
+    <script src="../scripts/dashboard.js"></script>
 </body>
 
 </html>
