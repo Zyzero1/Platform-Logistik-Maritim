@@ -13,7 +13,7 @@
     overflow: hidden;
 }
 
-.modal-content {
+.modal-content1 {
     background-color: #EEF9FF;
     margin: 10% auto;
     padding: 20px;
@@ -113,8 +113,6 @@ h2 {
     margin: 0;
 }
 
-
-
 .cek-btn {
     background-color: #06A3DA;
     color: #ffffff;
@@ -181,26 +179,6 @@ h2 {
     margin-bottom: 30px;
 }
 
-.close-modal {
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 0px;
-    right: 12px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    z-index: 2;
-}
-
-.close-modal:hover,
-.close-modal:focus {
-    color: rgb(201, 0, 0);
-    text-decoration: none;
-    cursor: pointer;
-}
-
 .success-message-modal {
     margin-top: 10px;
     font-family: 'Rubik', sans-serif;
@@ -258,6 +236,15 @@ h2 {
 
 #statusModal { z-index: 9999; }
 #statusModal2 { z-index: 9999; }
-#modalOverlay { z-index: 9998; }
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 998;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
 
 /* Input fields */

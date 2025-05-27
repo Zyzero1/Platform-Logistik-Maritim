@@ -295,7 +295,7 @@
         }
 
         input:focus,
-        textarea:focus {
+        select:focus {
             border: 3px solid #03e2ff !important; 
             outline: none;
         }
@@ -588,6 +588,7 @@
                             <option value="minuman">Minuman</option>
                             <option value="elektronik">Elektronik</option>
                             <option value="pakaian">Pakaian</option>
+                            <option value="kendaraan">Kendaraan</option>
                         </select>
                         <div class="error" id="error-jenisbarang"></div>
                     </div>
@@ -603,6 +604,31 @@
                         </select>
                         <div class="error" id="error-jeniskargo"></div>
                     </div>
+                    <div class="col" id="weight-group">
+                        <label for="weight">Berat</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="number" id="berat" name="berat" placeholder="0" min="0"
+                                onblur="validateField('berat', 'error-berat', 'Berat harus diisi')"
+                                oninput="validateField('berat', 'error-berat', 'Berat harus diisi')">
+                            <span style="color: white; font-weight: bold;">KG</span>
+                        </div>
+                        <div class="error" id="error-berat"></div>
+                    </div>
+    
+                    <!-- Jenis Kendaraan (hanya muncul jika jenis barang = kendaraan) -->
+                    <div class="col" id="jenis-kendaraan-group" style="display: none;">
+                        <label for="jeniskendaraan">Jenis Kendaraan</label>
+                        <select id="jeniskendaraan" name="jeniskendaraan"
+                            onblur="validateField('jeniskendaraan', 'error-jeniskendaraan', 'Pilih Jenis Kendaraan')"
+                            oninput="validateField('jeniskendaraan', 'error-jeniskendaraan', 'Pilih Jenis Kendaraan')">
+                            <option value="">Pilih Jenis Kendaraan</option>
+                            <option value="mobil">Mobil</option>
+                            <option value="motor">Motor</option>
+                            <option value="truk">Truk</option>
+                            <option value="kendaraan_lainnya">Kendaraan Lainnya</option>
+                        </select>
+                        <div class="error" id="error-jeniskendaraan"></div>
+                    </div>
                 </div>
 
                 <button type="button" class="btn-kirim" onclick="validateForm()">Kirim</button>
@@ -614,7 +640,7 @@
                     <h2 style="color:white; text-align:center; margin-bottom: 20px; font-size: 28px; font-weight: bolder;">Pesanan Berhasil Dibuat</h2>
                 </div>
                 <div class="modal-footer">
-                    <button onclick="closeModalSuccess(); window.location.href='cek-resi.html'" style="padding:10px 20px; border:none; font-weight: bolder; border-radius:8px; cursor:pointer;">CEK RESI</button>
+                    <button onclick="closeModalSuccess(); window.location.href='resi.html'" style="padding:10px 20px; border:none; font-weight: bolder; border-radius:8px; cursor:pointer;">CEK RESI</button>
                 </div>
             </div>
         </div>
@@ -652,6 +678,7 @@
             { id: 'metodepembayaran', errorId: 'error-metodepembayaran', message: 'Pilih Metode Pembayaran' },
             { id: 'jenisbarang', errorId: 'error-jenisbarang', message: 'Pilih Jenis Barang' },
             { id: 'jeniskargo', errorId: 'error-jeniskargo', message: 'Pilih Jenis Kargo' },
+            { id: 'berat', errorId: 'error-berat', message: 'Berat harus diisi' },
         ];
 
         fields.forEach(field => {
@@ -668,12 +695,69 @@
             }
         });
 
+        const jenisBarang = document.getElementById("jenisbarang").value;
+
+        if (jenisBarang !== "kendaraan") {
+            const beratInput = document.getElementById("weight");
+            const errorBerat = document.getElementById("error-berat");
+
+            if (!beratInput.value || parseFloat(beratInput.value) <= 0) {
+                errorBerat.textContent = "Berat harus diisi dengan angka positif";
+                beratInput.classList.add('input-error');
+                isValid = false;
+            } else {
+                errorBerat.textContent = "";
+                beratInput.classList.remove('input-error');
+            }
+        } else {
+            const jenisKendaraanInput = document.getElementById("jeniskendaraan");
+            const errorJenisKendaraan = document.getElementById("error-jeniskendaraan");
+
+            if (!jenisKendaraanInput.value) {
+                errorJenisKendaraan.textContent = "Pilih Jenis Kendaraan";
+                jenisKendaraanInput.classList.add('input-error');
+                isValid = false;
+            } else {
+                errorJenisKendaraan.textContent = "";
+                jenisKendaraanInput.classList.remove('input-error');
+            }
+        }
+
         if (isValid) {
             showModalSuccess();
         } else {
             showModal("Lengkapi semua data sebelum mengirim.");
         }
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const jenisBarangSelect = document.getElementById("jenisbarang");
+        const weightGroup = document.getElementById("weight-group");
+        const jenisKendaraanGroup = document.getElementById("jenis-kendaraan-group");
+
+        if (jenisBarangSelect) {
+            jenisBarangSelect.addEventListener("change", function () {
+                const selected = this.value;
+
+                if (selected === "kendaraan") {
+                    weightGroup.style.display = "none";
+                    jenisKendaraanGroup.style.display = "block";
+                } else {
+                    weightGroup.style.display = "block";
+                    jenisKendaraanGroup.style.display = "none";
+                }
+            });
+
+            // Trigger initial check in case default value is already set
+            const initialSelection = jenisBarangSelect.value;
+            if (initialSelection === "kendaraan") {
+                weightGroup.style.display = "none";
+                jenisKendaraanGroup.style.display = "block";
+            } else {
+                jenisKendaraanGroup.style.display = "none";
+            }
+        }
+    });
 
     function showModalSuccess() {
         document.getElementById('successModal').style.display = 'block';

@@ -277,9 +277,56 @@
             transition: background-color 0.3s ease;
         }
 
+        .update-button a {
+            text-decoration: none;
+            color: inherit;
+        }
+
         .update-button:hover {
-            background-color: #1568bb;
+            background-color: #0096c7;
             color: #fff;
+        }
+
+        #successModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #00b4d8;
+            padding: 20px;
+            width: 415px;
+            border-radius: 10px;
+            font-family: 'Nunito', sans-serif;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            text-align: center;
+        }
+
+        .modal-footer button {
+            background: #fff;
+            color: #00b4d8;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .modal-footer button:hover {
+            background: #46e0ff;
+            color: #fff;
+        }
+
+        #errorModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            text-align: center;
+            max-width: 300px;
         }
 
         /* Footer */
@@ -333,7 +380,7 @@
                     </a>
                 </li>
                 <li>
-                    <a class="dropdown-item d-flex align-items-center" href="login/Login-form.html">
+                    <a class="dropdown-item d-flex align-items-center" href="landing-page.html">
                         <i class="fa-solid fa-right-from-bracket"></i> Log out
                     </a>
                 </li>
@@ -378,8 +425,17 @@
                     </div>
                 </div>
                 <div class="button-wrapper">
-                    <button class="update-button"><a href="profile.html">Update</a></button>
+                    <button class="update-button" onclick="validateForm()">Update</button>
                 </div>
+            </div>
+        </div>
+        <div id="successModal" style="display:none;">
+            <div class="modal-body">
+                <i class="fa-regular fa-circle-check" style="font-size:130px; color:#fff; margin:20px auto; display:block;"></i>
+                <h2 style="color:white; text-align:center; margin-bottom: 20px; font-size: 28px; font-weight: bolder;">Profil Berhasil Dibuat</h2>
+            </div>
+            <div class="modal-footer">
+                <button onclick="closeModalSuccess()"" style="padding:10px 20px; border:none; font-weight: bolder; border-radius:8px; cursor:pointer;">Close</button>
             </div>
         </div>
     </div>
@@ -387,6 +443,11 @@
     <footer>
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
+
+    <div id="errorModal" style="display:none; position:fixed; top:20%; left:50%; transform:translate(-50%, -50%); background:#ffffff; padding:20px; border-radius:10px; border: 1px solid #00b4d8; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:999;">
+        <p id="modalMessage" style="color:red; font-weight:bold; font-family: 'Nunito', sans-serif;">Lengkapi semua data sebelum mengirim.</p>
+        <button onclick="closeModalError()" style="margin-top:10px; padding:8px 16px; background:#00b4d8; color:#fff; border:none; border-radius:5px; cursor:pointer;">Tutup</button>
+    </div>
 
     <script>
         function handleImageUpload(event) {
@@ -400,7 +461,33 @@
                 reader.readAsDataURL(file);
             }
         }
-    </script>
+
+        function validateForm() {
+            let isValid = true;
+            if (isValid) {
+                showModalSuccess();
+            } else {
+                showModal("Lengkapi semua data sebelum mengirim.");
+            }
+        }
+
+        function showModalSuccess() {
+            document.getElementById('successModal').style.display = 'block';
+        }
+
+        function closeModalSuccess() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        function showModal(message) {
+            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('errorModal').style.display = 'block';
+        }
+
+        function closeModalError() {
+            document.getElementById('errorModal').style.display = 'none';
+        }
+        </script>
     <script src="../scripts/script.js"></script>
 </body>
 
