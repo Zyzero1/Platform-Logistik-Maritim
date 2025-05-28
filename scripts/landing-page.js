@@ -50,6 +50,13 @@ function cekSearch() {
     if (statusModal) statusModal.style.display = "block";
 }
 
+function closeModal(modalId) {
+    var modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
 // Fungsi untuk tombol "CEK" di dalam modal
 document.getElementById("cekButton")?.addEventListener("click", function () {
     const originCity = window.selectedOrigin;
@@ -136,7 +143,7 @@ function checkStatus() {
     orderIcon.className = "order-icon";
     const iconImg = document.createElement("img");
     iconImg.src = response.data.icon;
-    iconImg.alt = response.data.type + " Icon";
+    iconImg.alt = `${response.data.type} Icon`;
     orderIcon.appendChild(iconImg);
     orderBox.appendChild(orderIcon);
 
@@ -146,7 +153,7 @@ function checkStatus() {
     const typeHeading = document.createElement("h4");
     typeHeading.textContent = response.data.type;
     const priceParagraph = document.createElement("p");
-    priceParagraph.textContent = `Rp. ${response.data.price}`;
+    priceParagraph.textContent = `Rp. ${response.data.price.toLocaleString("id-ID")}`;
     orderDetailsDiv.appendChild(typeHeading);
     orderDetailsDiv.appendChild(priceParagraph);
     orderBox.appendChild(orderDetailsDiv);
@@ -162,10 +169,12 @@ function checkStatus() {
     locationText.className = "location-text";
     const addressSpan = document.createElement("span");
     addressSpan.className = "address";
-    addressSpan.textContent = response.data.origin + " - " + response.data.destination;
+    addressSpan.textContent = `${response.data.origin} - ${response.data.destination}`;
+    
     const dateSpan = document.createElement("span");
     dateSpan.className = "date";
     dateSpan.textContent = response.data.date;
+    
     locationText.appendChild(addressSpan);
     locationText.appendChild(dateSpan);
     orderLocation.appendChild(locationDot);
@@ -244,35 +253,17 @@ function closeModal(modalId) {
     } 
 
     // Reset input jika perlu
-    const trackingInput = document.getElementById("trackingInput");
-    const successMsg = document.getElementById("successMessage");
-    const orderDetails = document.getElementById("orderDetails");
+    if (modalId === "statusModal2") {
+        const trackingInput = document.getElementById("trackingInput");
+        const successMsg = document.getElementById("successMessage");
+        const orderDetails = document.getElementById("orderDetails");
 
-    if (trackingInput) {
-        trackingInput.readOnly = false;
-        trackingInput.value = "";
+        if (trackingInput) {
+            trackingInput.readOnly = false;
+            trackingInput.value = "";
+        }
+
+        if (successMsg) successMsg.style.display = "none";
+        if (orderDetails) orderDetails.innerHTML = "";
     }
-
-    if (successMsg) successMsg.style.display = "none";
-    if (orderDetails) orderDetails.innerHTML = "";
-}
-
-function closeModal1(modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.style.display = "none";
-    } 
-
-    // Reset input jika perlu
-    const trackingInput = document.getElementById("trackingInput");
-    const successMsg = document.getElementById("successMessage");
-    const orderDetails = document.getElementById("orderDetails");
-
-    if (trackingInput) {
-        trackingInput.readOnly = false;
-        trackingInput.value = "";
-    }
-
-    if (successMsg) successMsg.style.display = "none";
-    if (orderDetails) orderDetails.innerHTML = "";
 }

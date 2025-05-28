@@ -170,12 +170,12 @@ function simulateAPIResponse(trackingNumber) {
             // Sembunyikan semua box
             boxes.forEach(box => box.classList.remove('active'));
 
-            // Tampilkan hanya 3 box sesuai halaman
+            // Tampilkan box sesuai halaman
             for (let i = (page - 1) * itemsPerPage; i < page * itemsPerPage; i++) {
                 if (boxes[i]) boxes[i].classList.add('active');
             }
 
-            // Update pagination
+            // Update indikator halaman aktif
             document.querySelectorAll('#pagination .page-item').forEach(item => {
                 const pageNum = item.getAttribute('data-page');
                 if (!isNaN(pageNum)) {
@@ -184,12 +184,12 @@ function simulateAPIResponse(trackingNumber) {
                 }
             });
 
-            // Disable tombol Previous & Next jika di awal/akhir
+            // Disable previous/next jika diperlukan
             document.querySelector('#pagination .page-item[data-page="prev"]').classList.toggle('disabled', page === 1);
             document.querySelector('#pagination .page-item[data-page="next"]').classList.toggle('disabled', page === totalPages);
         }
 
-        // Event listener pagination
+        // Event listener untuk pagination
         document.querySelectorAll('#pagination .page-item').forEach(item => {
             item.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -204,6 +204,7 @@ function simulateAPIResponse(trackingNumber) {
                 }
             });
         });
+
 
         // Load halaman pertama saat pertama kali
         showPage(1);

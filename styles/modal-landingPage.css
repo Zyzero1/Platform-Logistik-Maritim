@@ -13,7 +13,7 @@
     overflow: hidden;
 }
 
-.modal-content1 {
+.modal-content {
     background-color: #EEF9FF;
     margin: 10% auto;
     padding: 20px;
@@ -76,6 +76,7 @@ h2 {
     margin-bottom: 5px;
     display: block;
     margin-top: 10px;
+    text-align: left;
 }
 
 .weight-group {
@@ -165,7 +166,7 @@ h2 {
     border: 1px solid #888;
     width: 100%;
     max-width: 900px;
-    height: 500px;
+    height: 620px;
     border-radius: 8px;
     text-align: center;
 }
@@ -189,9 +190,121 @@ h2 {
     display: none;
 }
 
+.order-box {
+    display: flex;
+    align-items: center;
+    height: 104px;
+    justify-content: space-between;
+    background-color: #E9E9E9;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.34);
+    overflow: hidden;
+}
+
+.order-icon {
+    flex: 0 0 90px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.order-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.order-details {
+    flex: 1 1 auto;
+    width: max-content;
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin-left: 10px;
+    text-align: left;
+}
+
+.order-details h4 {
+    margin: 0;
+    font-family: 'Nunito', sans-serif; 
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.order-details p {
+    margin: 5px 0 0 0;
+    font-family: 'Nunito', sans-serif; 
+    font-size: 14px;
+    color: #000000;
+}
+
+.location-container {
+    flex: 1 1 160px;
+    display: flex;
+    min-width: 140px;
+    justify-content: flex-start;
+}
+
+.order-location {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Nunito', sans-serif;
+}
+
+.order-location i {
+    font-size: 26px;
+    color: #000000;
+    min-width: 20px;
+    flex-shrink: 0;
+}
+
+.location-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.location-text .address {
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+}
+
+.location-text .date {
+    font-size: 14px;
+    color: #494949;
+}
+
+.order-status {
+    flex: 0 0 100px;
+    text-align: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+}
+
+.status-complete {
+    color: #00CE26;
+    font-weight: bold;
+}
+.status-process {
+    color: #ffdd00;
+    font-weight: bold;
+}
+.status-cancel {
+    color: #d32401;
+    font-weight: bold;
+}
+
 .order-details-modal {
     margin-top: 20px;
-    height: 29%;
+    height: 24%;
     padding: 10px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
