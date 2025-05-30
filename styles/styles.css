@@ -33,14 +33,18 @@ nav {
     justify-content: flex-end;
     flex-grow: 1;
     margin-right: 40px;
+    position: relative;
 }
 
 nav ul {
     list-style: none;
     display: flex;
+    padding: 0;
+    margin: 0;
 }
 
 nav li {
+    /* position: relative; */
     margin-left: 0px;
 }
 
@@ -50,10 +54,58 @@ nav li {
     text-decoration: none;
     font-family: 'Nunito', sans-serif;
     font-weight: bold;
+    position: relative;
+    transition: color 0.3s ease;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+
+⌄
+/* Gaya dasar navbar */
+nav {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1;
+    margin-right: 40px;
+    position: relative;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    position: relative;
+    margin-left: 0px;
+}
+
+.nav-link {
+    font-size: 18px;
+    color: #091E3E;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-weight: bold;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
     color: #008CD8;
+}
+
+.indicator {
+    position: absolute;
+    bottom: -5px; /* Sesuaikan jarak dari teks */
+    left: 0;
+    height: 3px;
+    width: 60px; /* Panjang garis */
+    background-color: #008CD8;
+    transition: left 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
 }
 
 .profile-icon {
@@ -133,8 +185,18 @@ nav li {
     background: #008CD8;
 }
 
+.hero-overlay2 {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 33, 69, 0.542);
+}
+
 .hero-content {
-    z-index: 1;
+    /* z-index: 1; */
     position: relative;
     margin-bottom: 50px;
     width: 100%;
@@ -142,7 +204,7 @@ nav li {
 
 .overlay-picture {
     position: absolute;
-    z-index: -1;
+    z-index: 1;
     top: 137px;
     left: 0;
     width: 100%;
@@ -154,6 +216,14 @@ nav li {
 .text-section {
     position: relative;
     z-index: 2;
+}
+
+.text-section h2{
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-family: 'Nunito', sans-serif;
+    color: #ffffff;
 }
 
 .title-group {
@@ -172,13 +242,6 @@ nav li {
 .sub-title {
     display: block;
     margin-bottom: 30px;
-}
-
-.hero h2 {
-    font-size: 20px;
-    margin-bottom: 10px;
-    font-family: 'Nunito', sans-serif;
-    color: #ffffff;
 }
 
 .hero h1 {
