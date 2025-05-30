@@ -24,7 +24,7 @@ function checkStatus() {
     
         // Add new order details
         const orderBox = document.createElement("div");
-        orderBox.className = "order-box";
+        orderBox.className = "order-box active";
 
         // Order icon
         const orderIcon = document.createElement("div");
@@ -113,7 +113,6 @@ function showModal() {
 
 // Simulate API response (replace with actual API call)
 function simulateAPIResponse(trackingNumber) {
-    // Replace this with an actual API call
     const mockData = {
         "LA-1234567": {
             success: true,
