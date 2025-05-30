@@ -108,6 +108,7 @@
             padding: 12px;
             background: #10AEE5;
             color: white;
+            position: relative;
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -117,8 +118,14 @@
             transition: background 0.3s;
         }
 
+        .sign-in-btn a{
+            text-decoration: none;
+            color: inherit;
+        }
+
         .sign-in-btn:hover {
-            background: #0e92be;
+            background: #23bff3;
+            color: #000;
         }
 
         .login-here {
@@ -164,7 +171,7 @@
                 <span class="toggle-password" onclick="togglePasswordVisibility()">&#128065;</span>
             </div>
 
-            <button type="submit" class="sign-in-btn"><a href="Login-form.html">Sign up</a></button>
+            <button type="button" class="sign-in-btn"><a href="Login-form.html">Sign up</a></button>
         </form>
 
         <div class="login-here">

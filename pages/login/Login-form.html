@@ -116,8 +116,14 @@
             transition: background 0.3s;
         }
 
+        .sign-in-btn a{
+            text-decoration: none;
+            color: inherit;
+        }
+
         .sign-in-btn:hover {
-            background: #0e92be;
+            background: #23bff3;
+            color: #000;
         }
 
         .forgot-link {
@@ -167,7 +173,7 @@
                 <span class="toggle-password" onclick="togglePasswordVisibility()">&#128065;</span>
             </div>
 
-            <button type="submit" class="sign-in-btn"><a href="../dashboard.html">Sign in</a></button>
+            <button type="button" class="sign-in-btn"><a href="../dashboard.html">Sign in</a></button>
         </form>
 
         <a href="forgot-password.html" class="forgot-link">Lupa Password?</a>

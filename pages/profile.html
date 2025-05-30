@@ -211,7 +211,7 @@
         }
 
         .form-fields {
-            display: flex;
+            display: block;
             flex-direction: column;
             justify-content: space-between;
             height: 200px;
@@ -219,45 +219,51 @@
 
         .profile-section {
             display: flex;
-            align-items: center;
-            margin-bottom: 35px;
-            gap: 30px;
-            width: 100%;
+            align-items: flex-start; /* Agar label sejajar dengan input secara vertikal */
+            gap: 8px; /* Jarak antara label dan input */
+            flex-wrap: nowrap;
+            padding: 8px;
+            position: relative;
+            min-height: 60px;
         }
 
         .profile-section label {
             color: #ffffff;
             text-align: right;
+            padding-right: 20px;
+            margin-top: 16px;
             font-family: 'Nunito', sans-serif;
-            width: 100px;
+            white-space: nowrap;
             font-weight: bold;
+            margin-left: auto;
+            display: block;
+        }
+
+        .input-wrapper-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 400px;
         }
 
         .input-wrapper {
             position: relative;
-            display: flex;
-            align-items: center;
-            flex-grow: 1;
+            display: inline-block;
         }
 
         .input-wrapper input {
-            padding-right: 30px;
-            width: 400px;
-            padding: 15px;
-            margin-left: auto;
+            width: 100%;
+            padding: 15px 30px 15px 15px;
             border: 1px solid #ccc;
             border-radius: 10px;
-        }
-
-        .edit-icon {
-            position: absolute;
-            right: 10px;
-            cursor: pointer;
+            width: 400px;
             font-size: 14px;
+            box-sizing: border-box;
         }
 
         .button-wrapper {
-            display: flex;
+            display: inline-block;
+            position: relative;
             justify-content: center;
             width: 100%;
         }
@@ -273,7 +279,7 @@
             cursor: pointer;
             font-weight: bold;
             font-size: 14px;
-            transform: translateX(65px);
+            transform: translateX(250px);
             transition: background-color 0.3s ease;
         }
 
@@ -285,6 +291,21 @@
         .update-button:hover {
             background-color: #0096c7;
             color: #fff;
+        }
+
+        .disabled-icon {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: red;
+            z-index: 10;
+            font-size: 18px;
+        }
+
+        #updateButton[disabled]:hover {
+            cursor: not-allowed;
+            opacity: 0.7;
         }
 
         #successModal {
@@ -314,19 +335,21 @@
             color: #fff;
         }
 
-        #errorModal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            z-index: 9999;
-            text-align: center;
-            max-width: 300px;
+        .error {
+            /* grid-column: 2;
+            grid-row: 2; */
+            color: red;
+            font-size: 0.9em;
+            margin-top: 0px;
+            margin-left: 5px;
+            min-height: 18px;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 400;
+            text-align: left;
+        }
+
+        .input-error {
+            border: 2px solid red !important;
         }
 
         /* Footer */
@@ -403,29 +426,41 @@
             <div class="form-fields">
                 <div class="profile-section">
                     <label for="name">Name</label>
-                    <div class="input-wrapper">
-                        <input type="text" id="name" value="Azza" placeholder="..." />
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                    <div class="input-wrapper-container">
+                        <div class="input-wrapper">
+                            <input type="text" name="name" id="name" value="Azza" placeholder="..."
+                                onblur="validateField('name', 'error-name', 'Nama tidak boleh kosong')"
+                                oninput="validateField('name', 'error-name', 'Nama tidak boleh kosong')">
+                        </div>
+                        <div class="error" id="error-name"></div>
                     </div>
                 </div>
 
                 <div class="profile-section">
                     <label for="email">Email</label>
-                    <div class="input-wrapper">
-                        <input type="email" id="email" value="azza@example.com" placeholder="..." />
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                    <div class="input-wrapper-container">
+                        <div class="input-wrapper">
+                            <input type="email" name="email" id="email" value="azza@example.com" placeholder="..."
+                                onblur="validateField('email', 'error-email', 'Email tidak boleh kosong')"
+                                oninput="validateField('email', 'error-email', 'Email tidak boleh kosong')">
+                        </div>
+                        <div class="error" id="error-email"></div>
                     </div>
                 </div>
 
                 <div class="profile-section">
                     <label for="password">Password</label>
-                    <div class="input-wrapper">
-                        <input type="password" id="password" value="yourpassword123" placeholder="..." />
-                        <i class="fa-solid fa-pen-to-square edit-icon"></i>
+                    <div class="input-wrapper-container">
+                        <div class="input-wrapper">
+                            <input type="password" name="password" id="password" value="yourpassword123" placeholder="..."
+                                onblur="validateField('password', 'error-password', 'Password tidak boleh kosong')"
+                                oninput="validateField('password', 'error-password', 'Password tidak boleh kosong')">
+                        </div>
+                        <div class="error" id="error-password"></div>
                     </div>
                 </div>
                 <div class="button-wrapper">
-                    <button class="update-button" onclick="validateForm()">Update</button>
+                    <button class="update-button" id="updateButton" onclick="validateForm()">Update</button>
                 </div>
             </div>
         </div>
@@ -444,11 +479,6 @@
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
 
-    <div id="errorModal" style="display:none; position:fixed; top:20%; left:50%; transform:translate(-50%, -50%); background:#ffffff; padding:20px; border-radius:10px; border: 1px solid #00b4d8; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:999;">
-        <p id="modalMessage" style="color:red; font-weight:bold; font-family: 'Nunito', sans-serif;">Lengkapi semua data sebelum mengirim.</p>
-        <button onclick="closeModalError()" style="margin-top:10px; padding:8px 16px; background:#00b4d8; color:#fff; border:none; border-radius:5px; cursor:pointer;">Tutup</button>
-    </div>
-
     <script>
         function handleImageUpload(event) {
             const file = event.target.files[0];
@@ -462,32 +492,80 @@
             }
         }
 
-        function validateForm() {
-            let isValid = true;
-            if (isValid) {
-                showModalSuccess();
+        function validateInputs() {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            return name !== "" && email !== "" && password !== "";
+        }
+
+        // Fungsi untuk mengontrol tampilan ikon dan status tombol
+        function toggleButtonState() {
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const button = document.getElementById("updateButton");
+
+            if (name && email && password) {
+                button.disabled = false;
             } else {
-                showModal("Lengkapi semua data sebelum mengirim.");
+                button.disabled = true;
             }
         }
 
-        function showModalSuccess() {
-            document.getElementById('successModal').style.display = 'block';
+        function validateField(fieldId, errorId, errorMessage) {
+            const input = document.getElementById(fieldId);
+            const errorDiv = document.getElementById(errorId);
+            const value = input.value.trim();
+
+            if (value === "") {
+                errorDiv.textContent = errorMessage;
+                input.classList.add("input-error");
+                return false;
+            } else {
+                errorDiv.textContent = "";
+                input.classList.remove("input-error");
+                return true;
+            }
+        }
+
+        function validateForm() {
+            const isNameValid = validateField("name", "error-name", "Nama tidak boleh kosong");
+            const isEmailValid = validateField("email", "error-email", "Email tidak boleh kosong");
+            const isPasswordValid = validateField("password", "error-password", "Password tidak boleh kosong");
+
+            if (!isNameValid || !isEmailValid || !isPasswordValid) {
+                return false;
+            }
+
+            // Tampilkan modal sukses
+            document.getElementById("successModal").style.display = "block";
         }
 
         function closeModalSuccess() {
             document.getElementById('successModal').style.display = 'none';
         }
 
-        function showModal(message) {
-            document.getElementById('modalMessage').textContent = message;
-            document.getElementById('errorModal').style.display = 'block';
-        }
+        document.getElementById("name").addEventListener("input", function () {
+            validateField("name", "error-name", "Nama tidak boleh kosong");
+            toggleButtonState();
+        });
 
-        function closeModalError() {
-            document.getElementById('errorModal').style.display = 'none';
-        }
+        document.getElementById("email").addEventListener("input", function () {
+            validateField("email", "error-email", "Email tidak boleh kosong");
+            toggleButtonState();
+        });
+
+        document.getElementById("password").addEventListener("input", function () {
+            validateField("password", "error-password", "Password tidak boleh kosong");
+            toggleButtonState();
+        });
+        
+        // Panggil sekali saat halaman dimuat
+        window.addEventListener("load", toggleButtonState);
         </script>
+        
     <script src="../scripts/script.js"></script>
 </body>
 
