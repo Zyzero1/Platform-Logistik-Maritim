@@ -26,30 +26,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const left = linkRect.left - navRect.left + (linkRect.width / 2) - 30;
 
+        indicator.style.transition = "none";
         indicator.style.left = `${left}px`;
-        indicator.style.opacity = "1";
+
+        requestAnimationFrame(() => {
+            indicator.style.transition = "left 0.3s ease";
+        });
     }
 
     // Saat hover
     links.forEach(link => {
-        link.addEventListener("mouseenter", () => {
-            moveIndicator(link);
-        });
-
-        link.addEventListener("mouseleave", () => {
-            if (!link.classList.contains("active")) {
-                indicator.style.opacity = "0";
-            }
-        });
-    });
-
-    // Saat klik (set active)
-    links.forEach(link => {
         link.addEventListener("click", function (e) {
-            // Hapus kelas aktif dari semua link
+            // Hapus class active dari semua link
             links.forEach(l => l.classList.remove("active"));
-            // Tambahkan kelas aktif ke link yang diklik
+
+            // Tambahkan class active ke link yang diklik
             this.classList.add("active");
+
+            // Pindahkan indikator dengan animasi
             moveIndicator(this);
         });
     });

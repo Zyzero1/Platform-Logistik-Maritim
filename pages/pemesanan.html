@@ -57,14 +57,18 @@
             justify-content: flex-end;
             flex-grow: 1;
             margin-right: 40px;
+            position: relative;
         }
 
         nav ul {
             list-style: none;
             display: flex;
+            padding: 0;
+            margin: 0;
         }
 
         nav li {
+            position: relative;
             margin-left: 0px;
         }
 
@@ -74,10 +78,25 @@
             text-decoration: none;
             font-family: 'Nunito', sans-serif;
             font-weight: bold;
+            position: relative;
+            transition: color 0.3s ease;
         }
 
-        .nav-link:hover {
+        .nav-link:hover, 
+        .nav-link.active {
             color: #008CD8;
+        }
+
+        .indicator {
+            position: absolute;
+            bottom: -5px; 
+            left: 0;
+            transform: translateX(0);
+            height: 3px;
+            width: 60px; 
+            background-color: #008CD8;
+            transition: left 0.3s ease;
+            opacity: 1;
         }
 
         .profile-icon {
@@ -640,8 +659,13 @@
                     <h2 style="color:white; text-align:center; margin-bottom: 20px; font-size: 28px; font-weight: bolder;">Pesanan Berhasil Dibuat</h2>
                 </div>
                 <div class="modal-footer">
-                    <button onclick="closeModalSuccess(); window.location.href='resi.html'" style="padding:10px 20px; border:none; font-weight: bolder; border-radius:8px; cursor:pointer;">CEK RESI</button>
+                    <button onclick="closeModal()" style="padding:10px 20px; border:none; font-weight: bolder; border-radius:8px; cursor:pointer;">CEK RESI</button>
                 </div>
+            </div>
+
+            <div id="errorModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:#ffffff; padding:20px; border-radius:10px; border: 1px solid #00b4d8; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:9999;">
+                <p id="modalMessage" style="color:red; font-weight:bold; font-family: 'Nunito', sans-serif;">Lengkapi semua data sebelum mengirim.</p>
+                <button onclick="closeErrorModal()" style="margin-top:10px; padding:8px 16px; background:#00b4d8; color:#fff; border:none; border-radius:5px; cursor:pointer;">Tutup</button>
             </div>
         </div>
 
@@ -665,6 +689,7 @@
         }
     }
 
+    // Validasi Form Utama
     function validateForm() {
         let isValid = true;
 
@@ -685,6 +710,8 @@
             const element = document.getElementById(field.id);
             const errorDiv = document.getElementById(field.errorId);
 
+            if (!element || !errorDiv) return;
+
             if (!element.value.trim()) {
                 errorDiv.textContent = field.message;
                 element.classList.add('input-error');
@@ -698,7 +725,7 @@
         const jenisBarang = document.getElementById("jenisbarang").value;
 
         if (jenisBarang !== "kendaraan") {
-            const beratInput = document.getElementById("weight");
+            const beratInput = document.getElementById("berat");
             const errorBerat = document.getElementById("error-berat");
 
             if (!beratInput.value || parseFloat(beratInput.value) <= 0) {
@@ -730,12 +757,37 @@
         }
     }
 
+    // Fungsi Modal
+    function showModalSuccess() {
+        const modal = document.getElementById('successModal');
+        if (modal) modal.style.display = 'block';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('successModal');
+        if (modal) modal.style.display = 'none';
+    }
+
+    function showModal(message) {
+        const modal = document.getElementById('errorModal');
+        const msgEl = document.getElementById('modalMessage');
+
+        if (msgEl) msgEl.textContent = message;
+        if (modal) modal.style.display = 'block';
+    }
+
+    function closeErrorModal() {
+        const modal = document.getElementById('errorModal');
+        if (modal) modal.style.display = 'none';
+    }
+
+    // Event Listener untuk Show/Hide input kendaraan
     document.addEventListener("DOMContentLoaded", function () {
         const jenisBarangSelect = document.getElementById("jenisbarang");
         const weightGroup = document.getElementById("weight-group");
         const jenisKendaraanGroup = document.getElementById("jenis-kendaraan-group");
 
-        if (jenisBarangSelect) {
+        if (jenisBarangSelect && weightGroup && jenisKendaraanGroup) {
             jenisBarangSelect.addEventListener("change", function () {
                 const selected = this.value;
 
@@ -748,7 +800,7 @@
                 }
             });
 
-            // Trigger initial check in case default value is already set
+            // Trigger initial check
             const initialSelection = jenisBarangSelect.value;
             if (initialSelection === "kendaraan") {
                 weightGroup.style.display = "none";
@@ -759,30 +811,10 @@
         }
     });
 
-    function showModalSuccess() {
-        document.getElementById('successModal').style.display = 'block';
-    }
-
-    function closeModalSuccess() {
-        document.getElementById('successModal').style.display = 'none';
-    }
-
-    function showModal(message) {
-        document.getElementById('modalMessage').textContent = message;
-        document.getElementById('errorModal').style.display = 'block';
-    }
-
-    function closeModalError() {
-        document.getElementById('errorModal').style.display = 'none';
-    }
     </script>
 
     <script src="../scripts/script.js"></script>
+    
 </body>
-<!-- Modal Error -->
-<div id="errorModal" style="display:none; position:fixed; top:20%; left:50%; transform:translate(-50%, -50%); background:#ffffff; padding:20px; border-radius:10px; border: 1px solid #00b4d8; box-shadow:0 0 10px rgba(0,0,0,0.3); z-index:999;">
-    <p id="modalMessage" style="color:red; font-weight:bold; font-family: 'Nunito', sans-serif;">Lengkapi semua data sebelum mengirim.</p>
-    <button onclick="closeModalError()" style="margin-top:10px; padding:8px 16px; background:#00b4d8; color:#fff; border:none; border-radius:5px; cursor:pointer;">Tutup</button>
-</div>
 
 </html>

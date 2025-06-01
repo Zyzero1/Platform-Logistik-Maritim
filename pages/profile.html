@@ -57,14 +57,18 @@
             justify-content: flex-end;
             flex-grow: 1;
             margin-right: 40px;
+            position: relative;
         }
 
         nav ul {
             list-style: none;
             display: flex;
+            padding: 0;
+            margin: 0;
         }
 
         nav li {
+            position: relative;
             margin-left: 0px;
         }
 
@@ -74,10 +78,25 @@
             text-decoration: none;
             font-family: 'Nunito', sans-serif;
             font-weight: bold;
+            position: relative;
+            transition: color 0.3s ease;
         }
 
-        .nav-link:hover {
+        .nav-link:hover, 
+        .nav-link.active {
             color: #008CD8;
+        }
+
+        .indicator {
+            position: absolute;
+            bottom: -5px; 
+            left: 0;
+            transform: translateX(0);
+            height: 3px;
+            width: 60px; 
+            background-color: #008CD8;
+            transition: left 0.3s ease;
+            opacity: 1;
         }
 
         .profile-icon {
