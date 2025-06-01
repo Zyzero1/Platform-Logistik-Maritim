@@ -1,7 +1,7 @@
 // Daftar kota yang diizinkan untuk rute pengiriman
 const allowedCities = [
     "batam", "jakarta", "surabaya", "tanjungpinang", "karimun", "lingga", "natuna", "anambas", "medan", "makassar",
-    "palembang", "semarang", "bandung", "denpasar", "padang"
+    "palembang", "semarang", "bandung", "denpasar", "padang", "tanjungpinang kota",
 ];
 
 // Fungsi untuk membuka modal cek harga

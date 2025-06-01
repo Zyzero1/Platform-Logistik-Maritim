@@ -550,11 +550,13 @@
                                 onblur="validateField('kabupaten', 'error-kabupaten', 'Pilih Kabupaten/Kota')"
                                 oninput="validateField('kabupaten', 'error-kabupaten', 'Pilih Kabupaten/Kota')">
                             <option value="">Pilih Kabupaten/Kota</option>
-                            <option value="Jakarta Utara">Jakarta Utara</option>
-                            <option value="Jakarta Selatan">Jakarta Selatan</option>
-                            <option value="Jakarta Barat">Jakarta Barat</option>
-                            <option value="Jakarta Timur">Jakarta Timur</option>
-                            <option value="Jakarta Pusat">Jakarta Pusat</option>
+                            <option value="Jakarta Utara">Bintan</option>
+                            <option value="Jakarta Selatan">Karimun</option>
+                            <option value="Jakarta Barat">Batam</option>
+                            <option value="Jakarta Timur">Tanjunpinang Kota</option>
+                            <option value="Jakarta Pusat">Lingga</option>
+                            <option value="Jakarta Pusat">Natuna</option>
+                            <option value="Jakarta Pusat">Anambas</option>
                         </select>
                         <div class="error" id="error-kabupaten"></div>
                     </div>
@@ -564,9 +566,10 @@
                                 onblur="validateField('provinsi', 'error-provinsi', 'Pilih Provinsi')"
                                 oninput="validateField('provinsi', 'error-provinsi', 'Pilih Provinsi')">
                             <option value="">Pilih Provinsi</option>
-                            <option value="DKI Jakarta">DKI Jakarta</option>
-                            <option value="Jawa Barat">Jawa Barat</option>
-                            <option value="Jawa Tengah">Jawa Tengah</option>
+                            <option value="DKI Jakarta">Kepulauan Riau</option>
+                            <option value="Jawa Barat">Jakarta</option>
+                            <option value="Jawa Tengah">Jawa Barat</option>
+                            <option value="Jawa Timur">Jawa Tengah</option>
                             <option value="Jawa Timur">Jawa Timur</option>
                         </select>
                         <div class="error" id="error-provinsi"></div>
@@ -587,6 +590,7 @@
                                 onblur="validateField('metodepembayaran', 'error-metodepembayaran', 'Pilih Metode Pembayaran')"
                                 oninput="validateField('metodepembayaran', 'error-metodepembayaran', 'Pilih Metode Pembayaran')">
                             <option value="">Pilih Metode Pembayaran</option>
+                            <option value="transfer_bank">Cash</option>
                             <option value="transfer_bank">Transfer Bank</option>
                             <option value="gopay">Gopay</option>
                             <option value="ovo">OVO</option>
@@ -659,7 +663,7 @@
                     <h2 style="color:white; text-align:center; margin-bottom: 20px; font-size: 28px; font-weight: bolder;">Pesanan Berhasil Dibuat</h2>
                 </div>
                 <div class="modal-footer">
-                    <button onclick="closeModal()" style="padding:10px 20px; border:none; font-weight: bolder; border-radius:8px; cursor:pointer;">CEK RESI</button>
+                    <button onclick="closeModal(); window.location.href='resi.html'" style="padding:10px 20px; border:none; font-weight: bolder; border-radius:8px; cursor:pointer;">CEK RESI</button>
                 </div>
             </div>
 
