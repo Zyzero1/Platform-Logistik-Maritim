@@ -744,13 +744,20 @@
             const jenisKendaraanInput = document.getElementById("jeniskendaraan");
             const errorJenisKendaraan = document.getElementById("error-jeniskendaraan");
 
-            if (!jenisKendaraanInput.value) {
+            if (!jenisKendaraanInput || !jenisKendaraanInput.value) {
                 errorJenisKendaraan.textContent = "Pilih Jenis Kendaraan";
                 jenisKendaraanInput.classList.add('input-error');
                 isValid = false;
             } else {
                 errorJenisKendaraan.textContent = "";
                 jenisKendaraanInput.classList.remove('input-error');
+            }
+
+            const errorBerat = document.getElementById("error-berat");
+            const beratInput = document.getElementById("berat");
+            if (errorBerat && beratInput) {
+                errorBerat.textContent = "";
+                beratInput.classList.remove('input-error');
             }
         }
 
@@ -785,15 +792,23 @@
         if (modal) modal.style.display = 'none';
     }
 
+    document.getElementById("jeniskendaraan")?.addEventListener("change", function () {
+        const errorDiv = document.getElementById("error-jeniskendaraan");
+        if (this.value) {
+            errorDiv.textContent = "";
+            this.classList.remove("input-error");
+        }
+    });
+
     // Event Listener untuk Show/Hide input kendaraan
-    document.addEventListener("DOMContentLoaded", function () {
+    window.addEventListener("load", function () {
         const jenisBarangSelect = document.getElementById("jenisbarang");
         const weightGroup = document.getElementById("weight-group");
         const jenisKendaraanGroup = document.getElementById("jenis-kendaraan-group");
 
         if (jenisBarangSelect && weightGroup && jenisKendaraanGroup) {
-            jenisBarangSelect.addEventListener("change", function () {
-                const selected = this.value;
+            function toggleFields() {
+                const selected = jenisBarangSelect.value;
 
                 if (selected === "kendaraan") {
                     weightGroup.style.display = "none";
@@ -802,16 +817,13 @@
                     weightGroup.style.display = "block";
                     jenisKendaraanGroup.style.display = "none";
                 }
-            });
-
-            // Trigger initial check
-            const initialSelection = jenisBarangSelect.value;
-            if (initialSelection === "kendaraan") {
-                weightGroup.style.display = "none";
-                jenisKendaraanGroup.style.display = "block";
-            } else {
-                jenisKendaraanGroup.style.display = "none";
             }
+
+            // Tambahkan event listener
+            jenisBarangSelect.addEventListener("change", toggleFields);
+
+            // Jalankan setelah delay agar pastikan nilainya sudah termuat
+            setTimeout(toggleFields, 100);
         }
     });
 
