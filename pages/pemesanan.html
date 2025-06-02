@@ -697,6 +697,7 @@
     function validateForm() {
         let isValid = true;
 
+        // Validasi field dasar
         const fields = [
             { id: 'nama', errorId: 'error-nama', message: 'Nama harus diisi' },
             { id: 'email', errorId: 'error-email', message: 'Email/No Telepon harus diisi' },
@@ -706,8 +707,7 @@
             { id: 'kodepos', errorId: 'error-kodepos', message: 'Kode Pos harus diisi' },
             { id: 'metodepembayaran', errorId: 'error-metodepembayaran', message: 'Pilih Metode Pembayaran' },
             { id: 'jenisbarang', errorId: 'error-jenisbarang', message: 'Pilih Jenis Barang' },
-            { id: 'jeniskargo', errorId: 'error-jeniskargo', message: 'Pilih Jenis Kargo' },
-            { id: 'berat', errorId: 'error-berat', message: 'Berat harus diisi' },
+            { id: 'jeniskargo', errorId: 'error-jeniskargo', message: 'Pilih Jenis Kargo' }
         ];
 
         fields.forEach(field => {
@@ -726,39 +726,51 @@
             }
         });
 
+        // Validasi khusus berdasarkan jenis barang
         const jenisBarang = document.getElementById("jenisbarang").value;
 
-        if (jenisBarang !== "kendaraan") {
-            const beratInput = document.getElementById("berat");
-            const errorBerat = document.getElementById("error-berat");
-
-            if (!beratInput.value || parseFloat(beratInput.value) <= 0) {
-                errorBerat.textContent = "Berat harus diisi dengan angka positif";
-                beratInput.classList.add('input-error');
-                isValid = false;
-            } else {
-                errorBerat.textContent = "";
-                beratInput.classList.remove('input-error');
-            }
-        } else {
+        if (jenisBarang === "kendaraan") {
+            // Validasi untuk jenis kendaraan (HANYA ketika jenis barang = kendaraan)
             const jenisKendaraanInput = document.getElementById("jeniskendaraan");
             const errorJenisKendaraan = document.getElementById("error-jeniskendaraan");
 
             if (!jenisKendaraanInput || !jenisKendaraanInput.value) {
-                errorJenisKendaraan.textContent = "Pilih Jenis Kendaraan";
-                jenisKendaraanInput.classList.add('input-error');
+                if (errorJenisKendaraan) {
+                    errorJenisKendaraan.textContent = "Pilih Jenis Kendaraan";
+                    if (jenisKendaraanInput) jenisKendaraanInput.classList.add('input-error');
+                }
                 isValid = false;
             } else {
-                errorJenisKendaraan.textContent = "";
-                jenisKendaraanInput.classList.remove('input-error');
+                if (errorJenisKendaraan) errorJenisKendaraan.textContent = "";
+                if (jenisKendaraanInput) jenisKendaraanInput.classList.remove('input-error');
             }
-
-            const errorBerat = document.getElementById("error-berat");
+            
+            // Tidak perlu validasi berat untuk kendaraan
             const beratInput = document.getElementById("berat");
-            if (errorBerat && beratInput) {
-                errorBerat.textContent = "";
+            const errorBerat = document.getElementById("error-berat");
+            if (errorBerat) errorBerat.textContent = "";
+            if (beratInput) beratInput.classList.remove('input-error');
+        } else {
+            // Validasi untuk berat (ketika jenis barang BUKAN kendaraan)
+            const beratInput = document.getElementById("berat");
+            const errorBerat = document.getElementById("error-berat");
+
+            if (!beratInput.value || parseFloat(beratInput.value) <= 0) {
+                if (errorBerat) {
+                    errorBerat.textContent = "Berat harus diisi dengan angka positif";
+                    beratInput.classList.add('input-error');
+                }
+                isValid = false;
+            } else {
+                if (errorBerat) errorBerat.textContent = "";
                 beratInput.classList.remove('input-error');
             }
+            
+            // Tidak perlu validasi jenis kendaraan
+            const jenisKendaraanInput = document.getElementById("jeniskendaraan");
+            const errorJenisKendaraan = document.getElementById("error-jeniskendaraan");
+            if (errorJenisKendaraan) errorJenisKendaraan.textContent = "";
+            if (jenisKendaraanInput) jenisKendaraanInput.classList.remove('input-error');
         }
 
         if (isValid) {
@@ -801,7 +813,7 @@
     });
 
     // Event Listener untuk Show/Hide input kendaraan
-    window.addEventListener("load", function () {
+    document.addEventListener("DOMContentLoaded", function() {
         const jenisBarangSelect = document.getElementById("jenisbarang");
         const weightGroup = document.getElementById("weight-group");
         const jenisKendaraanGroup = document.getElementById("jenis-kendaraan-group");
@@ -823,7 +835,7 @@
             jenisBarangSelect.addEventListener("change", toggleFields);
 
             // Jalankan setelah delay agar pastikan nilainya sudah termuat
-            setTimeout(toggleFields, 100);
+            toggleFields();
         }
     });
 
