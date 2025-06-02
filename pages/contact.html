@@ -698,4 +698,34 @@
     <button onclick="closeErrorModal()" style="margin-top:10px; padding:8px 16px; background:#00b4d8; color:#fff; border:none; border-radius:5px; cursor:pointer;">Tutup</button>
 </div>
 
+<script>
+function validateForm() {
+    let isValid = true;
+
+    if (!validateField('nama', 'error-nama', 'Nama harus diisi')) isValid = false;
+    if (!validateField('email', 'error-email', 'Email harus diisi')) isValid = false;
+    if (!validateField('subjek', 'error-subjek', 'Subjek harus diisi')) isValid = false;
+    if (!validateField('pesan', 'error-pesan', 'Pesan harus diisi')) isValid = false;
+
+    if (isValid) {
+        const nama = document.getElementById('nama').value.trim();
+        const pesan = document.getElementById('pesan').value.trim();
+
+        const testimoni = {
+            nama: nama,
+            pesan: pesan,
+            waktu: new Date().toLocaleString()
+        };
+
+        let testimoniList = JSON.parse(localStorage.getItem('testimoniList')) || [];
+        testimoniList.push(testimoni);
+        localStorage.setItem('testimoniList', JSON.stringify(testimoniList));
+
+        showModalSuccess();
+    } else {
+        showModal("Lengkapi semua data sebelum mengirim.");
+    }
+}
+</script>
+
 </html>
