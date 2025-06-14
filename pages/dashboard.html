@@ -237,6 +237,43 @@
         </div>    
     </section>
 
+    <section class="services mt-5">
+    <div class="title-group2">
+        <h1 class="title-1">Testimoni Pelanggan</h1>
+    </div>
+    <div class="container mt-4" id="testimoni-container">
+        <!-- Testimoni akan ditampilkan di sini -->
+    </div>
+</section>
+
+<!-- Tambahkan script di bagian bawah sebelum </body> -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('testimoni-container');
+    const testimoniList = JSON.parse(localStorage.getItem('testimoniList')) || [];
+
+    if (testimoniList.length === 0) {
+        container.innerHTML = '<p class="text-muted">Belum ada testimoni.</p>';
+        return;
+    }
+
+    testimoniList.reverse().forEach((item) => {
+        const card = document.createElement('div');
+        card.className = 'card mb-3';
+        card.style.borderLeft = '5px solid #06A3DA';
+        card.innerHTML = `
+            <div class="card-body">
+                <h5 class="card-title">${item.nama}</h5>
+                <p class="card-text">${item.pesan}</p>
+                <p class="card-text"><small class="text-muted">${item.waktu}</small></p>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+});
+</script>
+
+
     <footer>
         <p>2025 © Lautin Aja. All Rights Reserved.</p>
     </footer>
